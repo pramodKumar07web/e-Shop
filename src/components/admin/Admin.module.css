@@ -1,0 +1,54 @@
+.home_page {
+  background: linear-gradient(
+    59deg,
+    rgb(158, 185, 232) 0%,
+    rgb(185, 67, 122) 100%
+  );
+  height: 10vh;
+  color: white;
+}
+.home_page p {
+  font-size: 1rem;
+}
+
+.admin_container {
+  display: flex;
+  /* margin-top: 2vh; */
+}
+.admin {
+  height: 300px;
+  width: 400px;
+  margin: 50px 20px 0px 20px;
+}
+.user {
+  height: 300px;
+  width: 70vw;
+  margin: 50px 20px 0px 20px;
+}
+.bold {
+  height: 50px;
+  font-size: 1.5rem;
+  background-color: #dfdede;
+  box-shadow: 0px 0px 5px #dfdede;
+}
+
+.bold b {
+  margin-left: 12px;
+}
+.bold {
+  display: flex;
+  align-items: center;
+}
+.links {
+  height: 50px;
+  box-shadow: 0px 0px 5px gray;
+  display: flex;
+  align-items: center;
+}
+.admin_links a {
+  text-decoration: none;
+}
+
+span {
+  margin-left: 10px;
+}

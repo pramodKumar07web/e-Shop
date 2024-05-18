@@ -1,0 +1,275 @@
+
+  .home_page {
+    background: linear-gradient(59deg, rgb(158, 185, 232) 0%,  rgb(185, 67, 122) 100%);
+    height: 10vh;
+    color: white;
+    /* position: fixed; */
+    /* right: 10%; */
+  }
+  .home_page p {
+    font-size: 1rem;
+  }
+
+
+  .admin_container{
+    display: flex;
+
+   
+  }
+
+
+.admin{
+    /* background-color: red; */
+    height: 300px;
+    width: 400px;
+    margin: 50px 20px 0px 20px;
+   
+    /* border: 1px solid black; */
+}
+.user{
+    /* background-color: red; */
+    height: 300px;
+    width: 70vw;
+    margin: 50px 20px 0px 20px;
+    /* border: 1px solid black; */
+}
+.bold{
+    height: 50px;
+    font-size: 1.5rem;
+    /* margin: 0px; */
+    /* border-bottom: 1px solid black; */
+    background-color: #dfdede;
+    box-shadow: 0px 0px 5px #dfdede;
+}
+.bold1{
+    height: 50px;
+    font-size: 1.5rem;
+    /* margin: 0px; */
+    /* border-bottom: 1px solid black; */
+    background-color: #dfdede;
+    box-shadow: 0px 0px 5px #dfdede;
+    margin-top: 30px;
+}
+
+.bold b {
+    /* margin-left: 25px; */
+    /* margin-top: 10px; */
+    margin-left: 12px;
+  
+}
+.bold {
+    /* margin-left: 25px; */
+    /* margin-top: 10px; */
+    /* margin-left: 12px; */
+    display: flex;
+    align-items: center;
+   
+}
+
+
+.links{
+    /* margin-top: 15px; */
+    /* border-bottom: 1px solid black; */
+    height: 50px;
+    box-shadow: 0px 0px 5px gray;
+    display: flex;
+    align-items: center;
+    
+   
+}
+ .admin_links a{
+   text-decoration: none;
+  
+}
+
+span{
+    margin-left: 10px;
+}
+
+
+.cards_container {
+  
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0px 0px 10px;
+  }
+  .items{
+  
+  }
+  .cards1 {
+    height: 20vh;
+    margin: 0px 100px 0px 10px;
+    width: 49vw;
+    background-color: #fff;
+    z-index: -1;
+
+  }
+  .cards2 {
+    height: 70vh;
+    /* margin: 0px 1px 0px 0px; */
+    /* margin-right: -10px; */
+    margin-left: 10px;
+    /* width: 51vw; */
+    width: 59vw;
+    background-color: #fff;
+    position: fixed;
+    /* right: -10%; */
+    /* top: 19.99%; */
+    /* margin-bottom: 30px; */
+  }
+
+  .img1 {
+    width: 5vw; 
+    float: left;
+    margin-right: 10px;
+  }
+  .p {
+    margin-bottom: 5px;
+    /* background-color: #c9c3c3; */
+    
+  }
+  .p2 {
+    margin-top: 25px;
+    /* float: right; */
+  }
+  .p3 {
+    /* margin-top: 7px; */
+    float: left;
+    margin-right: 15px;
+  }
+  .stock {
+    height: 1.9vw;
+    background-color: blue;
+    width: 7vw;
+    text-align: center;
+    color: white;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    margin-right: 10px;
+  }
+
+
+  .product {
+    display: flex;
+    
+  }
+
+  .details {
+    display: flex;
+     margin: 10px 0px 50px 0px;
+     
+  }
+  .view {
+    height: 1.9vw;
+    width: 140px;
+    background-color: rgb(81, 81, 190);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  .cart {
+    height: 1.9vw;
+    width: 150px;
+    background-color: rgb(243, 66, 66);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid red;
+  }
+
+/* 
+  .delivery{
+    margin: 20px 50px 50px 50px;
+  } */
+
+
+  .address{
+    height: 50px;
+    width: 600px;
+  }
+
+  
+  .payment{
+    border: 1px solid black;
+    height: 250px;
+    width: 600px;
+    margin-top: 50px;
+    
+  }
+
+  .debit_card{
+    height: 50px;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    
+  }
+
+.icon_debit{
+  margin-left: 23px;
+  display: flex;
+  align-items: center;
+}
+
+
+  .debit_card p{
+    margin-left: 10px;
+    margin-right: 170px;
+    /* background-color: white; */
+    
+    
+  }
+
+  .card_img{
+    width: 40px;
+    margin-left: 15px;
+  }
+
+  .card_number{
+    margin-left: 23px;
+    
+  }
+  .card_number span{
+    /* margin-left: 23px; */
+    color: rgb(159, 158, 158);
+    
+  }
+
+  .number{
+    height: 40px;
+    width: 300px;
+    margin-left: 23px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .another_pay {
+  text-align: center;
+  margin-top: 30px;
+  width: 600px;
+  }
+ a{
+    text-decoration: none;
+    
+  }
+
+  .btn{
+    height: 40px;
+    width: 600px;
+    background-color: blue;
+    color: white;
+    margin-top: 10px;
+  }
+ 
+
+  
