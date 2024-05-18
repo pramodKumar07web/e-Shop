@@ -6,13 +6,9 @@ import UserContext from "../context/UserContext";
 
 function ProductsDetails() {
   const { id } = useParams();
-  // console.log(id)
   const { userId } = useContext(UserContext);
   const [products, setProducts] = useState(null);
   const [cartItems, setCartItems] = useState(null);
-  // const productDart = cartItems.products
-  // console.log(productDart)
-  // console.log(cartItems.item.products)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +17,6 @@ function ProductsDetails() {
           `http://localhost:3005/products/${id}`
         );
         if (response.data.product) {
-          // console.log("response data params", response.data.product);
           setProducts(response.data.product);
         } else {
           setProducts(null);
@@ -42,9 +37,6 @@ function ProductsDetails() {
           `http://localhost:3005/api/cart/${id}`
         );
         if (response) {
-          // console.log("response", response.data.products);
-          // const data = await response.json();
-          setCartItems(response.data);
         } else {
           console.error("Failed to fetch cart items");
         }
@@ -63,18 +55,6 @@ function ProductsDetails() {
       const selectedProduct = products[0];
       console.log("lse",selectedProduct._id)
       const newItem = {
-        // products: {
-        //   title: selectedProduct.title,
-        //   description: selectedProduct.description,
-        //   price: selectedProduct.price,
-        //   discountPercentage: selectedProduct.discountPercentage,
-        //   stock: selectedProduct.stock,
-        //   rating: selectedProduct.rating,
-        //   brand: selectedProduct.brand,
-        //   category: selectedProduct.category,
-        //   thumbnail: selectedProduct.thumbnail,
-        //   images: selectedProduct.images,
-        // },
         product:selectedProduct._id,
         quantity: 1,
         userId,

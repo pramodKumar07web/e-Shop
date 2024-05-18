@@ -29,11 +29,8 @@ function Signin() {
 
         // Store the token and user in localStorage
         localStorage.setItem("token", token);
-        // localStorage.setItem("user", JSON.stringify(user));
 
         login(response.data.id)
-        // setUserId(response.data.id)
-        // setUser(user); // Update user context
         navigate("/"); // Redirect to home page
       }
     } catch (error) {

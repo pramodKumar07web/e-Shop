@@ -26,7 +26,6 @@ const ProductForm = () => {
       if (response && response.data) {
         console.log(response.data)
        
-       // Navigate('/Signin');
       } else {
         console.error("Invalid Response Data");
       }

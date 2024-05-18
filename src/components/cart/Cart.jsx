@@ -1,40 +1,13 @@
 import React, { useContext, } from "react";
 import CartStyle from "./Cart.module.css";
 import { Link } from "react-router-dom";
-// import visa from "../../image/visa.png";
-// import mastercard from "../../image/mastercard.svg";
-// import amex from "../../image/amex.png";
-// import jcb from "../../image/jcb.png";
-// import discover from "../../image/discover.png";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 
 
 function Cart() {
   const {totalAmount,cartItems,setCartItems  } = useContext(UserContext);
-  // const [cartItems, setCartItems] = useState([]);
   console.log('responseCartItems',cartItems)
-  // useEffect(() => {
-  //   // Call the backend API to get all cart items
-  //   const fetchCartItems = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:3005/api/cart/${userId}`);
-  //       if (response) {
-  //         console.log('response',response.data)
-  //         // const data = await response.json();
-  //         setCartItems(response.data);
-  //       } else {
-  //         console.error("Failed to fetch cart items");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching cart items:", error);
-  //     }
-  //   };
-
-  //   fetchCartItems();
-  // }, []);
-
-  // console.log('cartItems',cartItems)
 
   const handleRemove = async (e,id) => {
 
@@ -52,21 +25,6 @@ function Cart() {
       console.error("Error removing item from the cart:", error);
     }
   };
-
-  // const getTotalAmount = () => {
-  //   let total = 0;
-  //   cartItems.forEach(item => {
-  //     // Calculate the special price for each item
-  //     const specialPrice = Math.round(item.product.price * (1 - item.product.discountPercentage / 100));
-  //     // Add the special price multiplied by quantity to the total
-  //     total += specialPrice * item.quantity;
-  //   });
-  //   return total;
-  // };
-
-  // // Calculate total amount
-  // const totalAmount = getTotalAmount();
-
 
 // makePayment integration
 

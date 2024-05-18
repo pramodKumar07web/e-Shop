@@ -31,10 +31,7 @@ function SignUp() {
       if (response && response.data) {
          // Store the token in localStorage
          localStorage.setItem('token ', response.data.token);
-        
-         // data in localStorage '
-        //  localStorage.setItem('user',JSON.stringify(response.data.newUser));
-        // console.log(response.data.key)
+
         SWal.fire({
           icon: "success",
           title: "SignUp Successfully",
