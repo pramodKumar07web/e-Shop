@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar/Navbar";
-import Filter from "../components/Filter"
+import Filter from "../components/filter/Filter"
 
 function FilterPage() {
     return ( 

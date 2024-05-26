@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AdminStyle from "./Admin.module.css";
+import UserContext from "../context/UserContext";
 
 const Admin = () => {
+  const {userId} = useContext(UserContext)
+  console.log("admin",userId)
   return (
     <>
      
@@ -32,7 +35,7 @@ const Admin = () => {
                 <span>View Order</span>s
               </p>
             </Link>
-            <Link>
+            <Link to="/admin">
               <p className={AdminStyle.links}>
                 <span>Manage Products</span>
               </p>

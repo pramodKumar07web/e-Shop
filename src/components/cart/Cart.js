@@ -1,35 +1,53 @@
-import React, { useContext, } from "react";
+import React, { useContext } from "react";
 import CartStyle from "./Cart.module.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 
-
 function Cart() {
-  const {totalAmount,cartItems,setCartItems  } = useContext(UserContext);
-  console.log('responseCartItems',cartItems)
+  const { totalAmount, totalItems, cartItems, setCartItems, fetchCartItems } =
+    useContext(UserContext);
+  // console.log('responseCartItems',cartItems)
 
-  const handleRemove = async (e,id) => {
 
+  const updateQuantity = async (id, quantity) => {
+    try {
+      const response = await axios.patch(`http://localhost:3005/cart/${id}`, { quantity });
+      const updatedItem = response.data;
+      if(updatedItem){
+        fetchCartItems()
+      }
+      // setCartItems((prevItems) =>
+      //   prevItems.map((item) => (item._id === id ? updatedItem : item))
+      // );
+    } catch (error) {
+      console.error('Error updating quantity', error);
+    }
+  };
+  
+
+  const handleRemove = async (e, id) => {
     try {
       // Make a request to remove the item from the cart based on its id
-     const response =  await axios.delete(`http://localhost:3005/api/cart/${id}`);
+      const response = await axios.delete(
+        `http://localhost:3005/api/cart/${id}`
+      );
       // Update the cart items after successful removal
-      if(response){
+      if (response) {
         setCartItems((prevItems) =>
           prevItems.filter((item) => item._id !== id)
         );
       }
-      
     } catch (error) {
       console.error("Error removing item from the cart:", error);
     }
   };
 
-// makePayment integration
+  // makePayment integration
 
   return (
     <>
+      {!cartItems.length && <Navigate to="/" replace={true}></Navigate>}
       <div className={CartStyle.home_page}>
         <h1>Cart Page</h1>
         <p>WellCome to the world of fashion</p>
@@ -38,6 +56,7 @@ function Cart() {
         <div className={CartStyle.cards_container}>
           <div className={CartStyle.items}>
             <h3 className={CartStyle.details}>Products Details</h3>
+            
             {cartItems &&
               cartItems.map((item) => (
                 <div className={CartStyle.cards1}>
@@ -46,6 +65,7 @@ function Cart() {
                     src={item.product.thumbnail}
                     alt=""
                   />
+                 <h3>id{item._id}</h3>
                   <h3>{item.product.title}</h3>
                   <p className={CartStyle.p3}>{item.product.brand}</p>
                   <p className={`${CartStyle.p} ${CartStyle.p3}`}>
@@ -59,26 +79,53 @@ function Cart() {
                         (1 - item.product.discountPercentage / 100)
                     )}
                   </p>
-                  <p className={CartStyle.p}>Qty : {item.quantity}</p>
+                  <div className={CartStyle.p}>
+                    <label htmlFor="quantity">Qty : </label>
+                    <select
+                      onChange={(e) => updateQuantity(item._id, e.target.value)}
+                      value={item.quantity}
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
                   <p className={`${CartStyle.p} ${CartStyle.stock}`}>
                     In Stock : {item.product.stock}
                   </p>
                   <div className={CartStyle.product}>
-                  <Link
-                    to={`/product-details/${item._id}`}
-                    key={item._id}
-                  >
-                    <p className={CartStyle.view}>VIEW PRODUCT</p>
+                    <Link to={`/product-details/${item._id}`} key={item._id}>
+                      <p className={CartStyle.view}>VIEW PRODUCT</p>
                     </Link>
-                    <button type="submit" onClick={(e)=>handleRemove(e,item._id)} className={CartStyle.cart}>REMOVE PRODUCT</button>
+                    <button
+                      type="button"
+                      onClick={(e) => handleRemove(e, item._id)}
+                      className={CartStyle.cart}
+                    >
+                      REMOVE PRODUCT
+                    </button>
                   </div>
                 </div>
               ))}
-          <p>Total Amount: ${totalAmount}</p>
-          <div><Link to='/checkout'><button className={CartStyle.btn}>Checkout</button></Link></div>
+            <p>Total Amount: ${totalAmount}</p>
+            <p>Total Items in Cart: {totalItems} Items</p>
+            <div>
+              <Link to="/checkout">
+                <button className={CartStyle.btn}>Checkout</button>
+              </Link>
+            </div>
+            <p  className={CartStyle.or}>
+                or
+                <Link to="/">
+                  <button type="button" >
+                    Continue Shopping
+                    <span aria-hidden="true"> &rarr;</span>
+                  </button>
+                </Link>
+              </p>
           </div>
-
-
 
           {/* <div className={CartStyle.cards2}>
             <h3 className={CartStyle.details}>Your Cart Summary</h3>

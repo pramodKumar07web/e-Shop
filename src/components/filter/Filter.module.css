@@ -5,7 +5,7 @@
 
   .filter_container{
     display: flex;
-    margin-top: 70px;
+    margin-top: 20px;
   }
 
   .Nav {
@@ -43,6 +43,10 @@
     margin-right: 23px;
   }
 
+
+  .h3{
+    margin-bottom: -30px;
+  }
 .card_mr{
   margin-left: -42px;
 }
@@ -52,24 +56,38 @@
    
   }
 
-  /* .fixd_left{
+  .catFixed{
+    position:fixed ;
+    /* top: 26px; */
+    /* z-index: 1; */
+   
+  }
+  .brandFixed{
     position: fixed;
-    left: 0%;
-  } */
+    /* padding: 20px; */
+    /* margin-top: 20px; */
+  }
 
 /* .categories_box{
   width: 13vw;
   height: 50vh;
 } */
 .categories{
+  /* position: fixed; */
     width: 20vw;
     margin-left: 23px;
     margin-top: 50px;
-  
+    max-height: 200px; /* Set desired height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.list_mr{
+  margin-top: 25px;
 }
 .categories_list{
     margin-left: 33px;
-    margin-top: 10px;
+    margin-top: 5px;
+
     
 }
 .checkbox{
@@ -80,6 +98,7 @@
 
 .filter{
   margin-left: 5px;
+ 
 }
 
 
@@ -167,4 +186,10 @@
   justify-content: center;
   border-radius: 4px;
   border: 1px solid red;
+}
+
+.price{
+  width: 185px;
+  height: 34px;
+  margin-top: 2px;
 }

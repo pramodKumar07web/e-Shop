@@ -15,12 +15,12 @@
 .search_container {
   width: 60vw;
   height: 9vh;
-  margin: 5vh auto 0px auto;
+  margin: 3vh auto 0px auto;
   background-color: #ede7e7;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 7vh;
+  /* margin-top: 7vh; */
 }
 .select {
   margin-right: 3%;
@@ -74,24 +74,6 @@ select:focus {
   margin-top: 40px;
 }
 
-/* .card_container {
-  width: 80vw;
-  display: flex;
-  margin: 30px auto 0px auto;
-} */
-
-/* .card {
-  height: 60vh;
-  margin: auto;
-  width: 20vw;
-  background-color: #fff;
-} */
-
-
-/* .img {
-  width: 15vw;
-  margin: 0px 1vw 0px 1vw;
-} */
 .card_container {
   width: 80vw;
   margin: 30px 0px 0px 0vw;
@@ -119,48 +101,6 @@ select:focus {
   height: 30vh;
   width: 20vw;
 }
-/* 
-.p {
-  margin-bottom: 5px;
-  background-color: #c9c3c3;
-}
-.p2 {
-  margin-top: 25px;
-}
-.p3 {
-  margin-top: 7px;
-}
-.stock {
-  background-color: blue;
-  width: 80px;
-  text-align: center;
-  color: white;
-  border-radius: 17px;
-}
-.product {
-  display: flex;
-}
-.view {
-  height: 30px;
-  width: 140px;
-  background-color: rgb(81, 81, 190);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-.cart {
-  height: 30px;
-  width: 140px;
-  color: rgb(183, 7, 7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  border: 1px solid red;
-} */
 
 .p {
   margin-bottom: 10px;

@@ -9,7 +9,8 @@ function SignUp() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    bio: ""
   });
   const navigate = useNavigate();
 
@@ -22,15 +23,16 @@ function SignUp() {
     e.preventDefault();
     try {
       //ApI Call
-      console.log("Before API Call");
+      // console.log("Before API Call");
       const response = await axios.post(
         "http://localhost:3005/Signup",
         formData
       )
-      console.log("After API Call");
+      // console.log("After API Call");
       if (response && response.data) {
+        // const { token, } = response.data;
          // Store the token in localStorage
-         localStorage.setItem('token ', response.data.token);
+        //  localStorage.setItem('token ', token);
 
         SWal.fire({
           icon: "success",
@@ -94,6 +96,17 @@ function SignUp() {
                   placeholder="Password"
                   onChange={handleChange}
                   value={formData.password}
+                />
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="text"
+                  className={SignUpStyle.name}
+                  name="bio"
+                  placeholder="bio"
+                  onChange={handleChange}
+                  value={formData.bio}
                 />
               </label>
               <label htmlFor="">

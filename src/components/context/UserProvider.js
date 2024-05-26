@@ -3,10 +3,19 @@ import UserContext from "./UserContext";
 import axios from "axios";
 
 export const UserProvider = ({ children }) => {
+  const [products, setProducts] = useState([]);
+  const [uniqueCategories, setUniqueCategories] = useState(new Set());
+  const [uniqueBrands, setUniqueBrands] = useState(new Set());
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [minPrice, setMinPrice] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
+
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const [userId, setUserId] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const [currentOrder, setCurrentOrder] = useState(null);
   // const [cardLoaded, setCardLoaled] = useState(false)
 
   const login = (id) => {
@@ -16,9 +25,11 @@ export const UserProvider = ({ children }) => {
   };
 
   const logout = () => {
-    // Perform logout actions and set isLoggedIn to false
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    setUserId(null);
+    setUserInfo(null);
+    setCartItems([]);
   };
 
   // Call the backend API to Auth check
@@ -30,7 +41,7 @@ export const UserProvider = ({ children }) => {
         },
       });
       if (response) {
-        console.log("fetchLoggedInUser", response.data);
+        // console.log("fetchLoggedInUser", response.data);
         setUserInfo(response.data);
       } else {
         console.error("Failed to fetch UserId");
@@ -81,10 +92,10 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (userId) {
-      fetchCartItems();
       fetchLoggedInUser();
+      fetchCartItems();
     }
-  }, []);
+  }, [userId]);
 
   const getTotalAmount = () => {
     let total = 0;
@@ -101,6 +112,25 @@ export const UserProvider = ({ children }) => {
 
   // Calculate total amount
   const totalAmount = getTotalAmount();
+  const totalItems = cartItems.reduce(
+    (total, item) => item.quantity + total,
+    0
+  );
+
+  const filteredProducts = products.filter((product) => {
+    const isCategoryMatch =
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(product.category);
+
+    const isBrandMatch =
+      selectedBrands.length === 0 || selectedBrands.includes(product.brand);
+
+    const isPriceInRange =
+      (!minPrice || product.price >= minPrice) &&
+      (!maxPrice || product.price <= maxPrice);
+
+    return isCategoryMatch && isBrandMatch && isPriceInRange;
+  });
 
   return (
     <UserContext.Provider
@@ -110,10 +140,30 @@ export const UserProvider = ({ children }) => {
         userId,
         cartItems,
         totalAmount,
+        totalItems,
+        currentOrder,
+        filteredProducts,
+        setCurrentOrder,
         setCartItems,
         setUserId,
         login,
         logout,
+        fetchCartItems,
+        fetchLoggedInUser,
+        maxPrice,
+        setMaxPrice,
+        minPrice,
+        setMinPrice,
+        selectedBrands,
+        setSelectedBrands,
+        products,
+        setProducts,
+        uniqueCategories,
+        setUniqueCategories,
+        uniqueBrands,
+        setUniqueBrands,
+        selectedCategories,
+        setSelectedCategories,
       }}
     >
       {children}

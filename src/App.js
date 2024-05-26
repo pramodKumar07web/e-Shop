@@ -12,11 +12,17 @@ import { UserProvider } from "./components/context/UserProvider";
 import Protected from "./components/auth/Protected";
 import Logout from "./components/auth/Logout";
 import UserOrderPage from "./page/UserOrdersPage";
-import FilterPage from "./page/FilterPage";
-import Cancel from "./components/Cancel";
-import Success from "./components/Success";
-import StripeCheckout from "./components/StripeCheckout";
-import Checkout from "./components/Checkout";
+import FilterPage from "./page/FilterMainPage";
+import StripeCheckout from "./components/checkout/StripeCheckout";
+import Checkout from "./components/checkout/Checkout";
+import OrderSuccessPage from "./page/OrderSuccessPage";
+import AlertTemplate from "react-alert-template-basic";
+import { positions, transitions, Provider  } from "react-alert";
+import FilterToggle from "./components/filter/FilterToggle";
+import ProfileUpdate from "./components/user/ProfileUpdate";
+import AddAddress from "./components/user/AddAddress";
+import SuccessPage from "./page/SuccessPage";
+import AdminProductList from "./components/admin/Components/AdminProductList";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +30,22 @@ const router = createBrowserRouter([
     element: (
       <Protected>
         <HomePage></HomePage>
+      </Protected>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <Protected>
+        <AdminProductList></AdminProductList>
+      </Protected>
+    ),
+  },
+  {
+    path: "/filter",
+    element: (
+      <Protected>
+        <FilterToggle></FilterToggle>
       </Protected>
     ),
   },
@@ -88,9 +110,7 @@ const router = createBrowserRouter([
   {
     path: "/logout",
     element: (
-      // <Protected>
       <Logout></Logout>
-      // </Protected>
     ),
   },
   {
@@ -104,17 +124,7 @@ const router = createBrowserRouter([
   {
     path: "/success",
     element: (
-      // <Protected>
-      <Success></Success>
-      // </Protected>
-    ),
-  },
-  {
-    path: "/cancel",
-    element: (
-      <Protected>
-        <Cancel></Cancel>
-      </Protected>
+      <SuccessPage></SuccessPage>
     ),
   },
   {
@@ -126,18 +136,47 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/stripe-checkout/",
+    path: "/order-success/:id",
+    element: <OrderSuccessPage></OrderSuccessPage>,
+  },
+  {
+    path: "/stripe-checkout",
     element: (
       <Protected>
         <StripeCheckout></StripeCheckout>
       </Protected>
     ),
   },
+  {
+    path: "/profileUpdate",
+    element: (
+      <Protected>
+        <ProfileUpdate></ProfileUpdate>
+      </Protected>
+    ),
+  },
+  {
+    path: "/addAddress",
+    element: (
+      <Protected>
+        <AddAddress></AddAddress>
+      </Protected>
+    ),
+  },
+ 
 ]);
 
 function App() {
 
-
+// optional configuration
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_LEFT,
+  timeout: 5000,
+  offset: '30px',
+  // you can also just use 'scale'
+  transition: transitions.SCALE
+}
 return (
     <div className="App">
       {" "}
@@ -148,10 +187,10 @@ return (
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
       />{" "}
-    
-        <UserProvider>
+    <Provider template={AlertTemplate} {...options}>
+        <UserProvider  >
           <RouterProvider router={router} />
-        </UserProvider>
+        </UserProvider></Provider>
     </div>
   );
 }

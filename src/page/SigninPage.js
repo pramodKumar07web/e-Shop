@@ -4,7 +4,7 @@ import Signin from "../components/auth/components/Signin"
 function SigninPage() {
     return ( 
         <div>
-            <Navbar/>
+            {/* <Navbar/> */}
             <Signin></Signin>
         </div>
      );

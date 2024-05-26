@@ -1,18 +1,16 @@
 import React, { useContext, useState } from "react";
-import CartStyle from "./cart/Cart.module.css";
 import "./Checkout.css"; // Import your custom CSS file
-import visa from "../image/visa.png";
-import mastercard from "../image/mastercard.svg";
-import amex from "../image/amex.png";
-import jcb from "../image/jcb.png";
-import discover from "../image/discover.png";
-import { Link } from "react-router-dom";
-import UserContext from "./context/UserContext";
+import { Link, Navigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 import axios from "axios";
 
 function Checkout() {
-  const {userInfo, totalAmount, cartItems } = useContext(UserContext);
-  console.log('userInfo',userInfo);
+  const { userInfo, totalItems, totalAmount, cartItems, setCartItems, fetchCartItems, currentOrder ,setCurrentOrder, fetchLoggedInUser  } =
+    useContext(UserContext);
+      const [selectedAddress, setSelectedAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState(null);
+  // const [currentOrder, setCurrentOrder] = useState(null);
+  // console.log("currentOrder", currentOrder._id);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -29,20 +27,17 @@ function Checkout() {
     setData({ ...data, [name]: value });
   };
 
-
-  
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(
         `http://localhost:3005/updateUser/${userInfo.id}`,
-        {addresses:[...userInfo.addresses, data]}
+        { addresses: [...userInfo.addresses, data] }
       );
       if (response && response.data) {
-        console.log("addAddress", response.data);
+        // console.log("addAddress", response.data);
+        fetchLoggedInUser()
       } else {
         console.log("addAddress failed");
       }
@@ -51,93 +46,93 @@ function Checkout() {
     }
   };
 
-  const handleOrder = () => {
-    // Handle order logic
+  const handleOrder = async (e) => {
+    e.preventDefault();
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user:userInfo.id,
+        paymentMethod,
+        selectedAddress,
+        status: "pending", // other status can be delivered,received.
+      };
+    // };
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/orders",
+        order
+      );
+      if (response.data) {
+        console.log("Product Order Successfully",response.data);
+        setCurrentOrder(response.data)
+      } else {
+        console.error("Failed order");
+      }
+    } catch (error) {
+      console.log('Internal Server Error frontend')
+      console.error("Error during order api", error);
+    }
   };
 
-  const handleQuantityChange = () => {
-    // Handle quantity change logic
+
+   const handleAddress = (e) => {
+    console.log(e.target.value);
+    setSelectedAddress(userInfo.addresses[e.target.value]);
   };
 
-  const handleRemoveItem = () => {
-    // Handle remove item logic
+   const handlePayment = (e) => {
+    // console.log(e.target.value);
+    setPaymentMethod(e.target.value);
+  };
+
+  const updateQuantity = async (id, quantity) => {
+    try {
+      const response = await axios.patch(`http://localhost:3005/cart/${id}`, { quantity });
+      const updatedItem = response.data;
+      if(updatedItem){
+        fetchCartItems()
+      }
+      // setCartItems((prevItems) =>
+      //   prevItems.map((item) => (item._id === id ? updatedItem : item))
+      // );
+    } catch (error) {
+      console.error('Error updating quantity', error);
+    }
+  };
+
+  const handleRemove = async (e, id) => {
+    try {
+      // Make a request to remove the item from the cart based on its id
+      const response = await axios.delete(
+        `http://localhost:3005/api/cart/${id}`
+      );
+      // Update the cart items after successful removal
+      if (response) {
+        setCartItems((prevItems) =>
+          prevItems.filter((item) => item._id !== id)
+        );
+      }
+    } catch (error) {
+      console.error("Error removing item from the cart:", error);
+    }
   };
   return (
-    // <div>
-    //   {" "}
-    //   <div className={CartStyle.cards2}>
-    //     <h3 className={CartStyle.details}>Your Cart Summary</h3>
-    //     <h3>Total: $869</h3>
-    //     <label htmlFor="" className={CartStyle.delivery}>
-    //       Delivery Address:
-    //     </label>
-    //     <br />
-    //     <label htmlFor="">
-    //       <input
-    //         type="text"
-    //         name="address"
-    //         className={CartStyle.address}
-    //         placeholder="Type your delivery address here..."
-    //       />
-    //     </label>
-
-    //     <div className={CartStyle.payment}>
-    //       <div className={CartStyle.debit_card}>
-    //         <div className={CartStyle.icon_debit}>
-    //           <i class="fa-solid fa-credit-card"></i>
-    //           <p>Pay with card</p>
-    //         </div>
-    //         <img className={CartStyle.card_img} src={visa} alt="#" />
-    //         <img className={CartStyle.card_img} src={mastercard} alt="#" />
-    //         <img className={CartStyle.card_img} src={amex} alt="#" />
-    //         <img className={CartStyle.card_img} src={jcb} alt="#" />
-    //         <img className={CartStyle.card_img} src={discover} alt="#" />
-    //       </div>
-    //       <div>
-    //         <label htmlFor="" className={CartStyle.card_number}>
-    //           Card Number:
-    //         </label>
-    //         <br />
-    //         <label htmlFor="">
-    //           <input
-    //             type="number"
-    //             name="number"
-    //             className={CartStyle.number}
-    //             placeholder="  **** **** **** **** "
-    //           />
-    //         </label>
-    //         <br />
-    //         <label htmlFor="" className={CartStyle.card_number}>
-    //           Expiration Date <span>(MM/YY)</span>
-    //         </label>
-    //         <br />
-    //         <label htmlFor="">
-    //           <input
-    //             type="number"
-    //             name="number"
-    //             className={CartStyle.number}
-    //             placeholder="  MM/YY "
-    //           />
-    //         </label>
-    //         <br />
-    //       </div>
-    //     </div>
-    //     <div className={CartStyle.another_pay}>
-    //       <Link to="/">Choose another way to pay</Link>
-    //       <br />
-    //       <Link to="/stripe-checkout">
-    //         <button className={CartStyle.btn}>Pay</button>
-    //       </Link>
-    //     </div>
-    //   </div>{" "}
-    // </div>
+   
+    <>
+      {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {currentOrder && currentOrder.paymentMethod === "cash" && (
+        <Navigate
+          to={`/order-success/${currentOrder.id}`}
+          replace={true}
+        ></Navigate>
+      )}
+      {currentOrder && currentOrder.paymentMethod === "card" && (
+        <Navigate to={`/stripe-checkout/`} replace={true}></Navigate>
+      )}
     <div className="containerx">
       <div className="lg-col-span-3">
-        <form
-          className="custom-form"
-          noValidate
-            onSubmit={handleSubmit}
-        >
+        <form className="custom-form" noValidate onSubmit={handleSubmit}>
           <div className="space-y-12">
             <div className="border-b border-gray-900 pb-12">
               <h2 className="form-heading">Personal Information</h2>
@@ -158,6 +153,7 @@ function Checkout() {
                       onChange={changeData}
                       id="name"
                       className="form-field"
+                     required
                     />
                   </div>
                 </div>
@@ -174,6 +170,7 @@ function Checkout() {
                       value={data.email}
                       onChange={changeData}
                       className="form-field"
+                      required
                     />
                   </div>
                 </div>
@@ -189,6 +186,7 @@ function Checkout() {
                       value={data.phone}
                       onChange={changeData}
                       className="form-field"
+                      required
                     />
                   </div>
                 </div>
@@ -205,6 +203,7 @@ function Checkout() {
                       onChange={changeData}
                       id="street"
                       className="form-field"
+                      required
                     />
                   </div>
                 </div>
@@ -221,6 +220,7 @@ function Checkout() {
                       onChange={changeData}
                       id="city"
                       className="form-field"
+                      required
                     />
                   </div>
                 </div>
@@ -237,6 +237,7 @@ function Checkout() {
                       onChange={changeData}
                       id="state"
                       className="form-field"
+                      required
                     />
                   </div>
                 </div>
@@ -253,7 +254,7 @@ function Checkout() {
                       onChange={changeData}
                       id="pinCode"
                       className="form-field"
-                    />
+                      required                    />
                   </div>
                 </div>
               </div>
@@ -281,7 +282,7 @@ function Checkout() {
                     <li key={index} className="address-item">
                       <div className="address-details">
                         <input
-                          //   onChange={handleAddress}
+                            onChange={handleAddress}
                           name="address"
                           type="radio"
                           value={index}
@@ -326,9 +327,9 @@ function Checkout() {
                       <input
                         id="cash"
                         name="payments"
-                        // onChange={handlePayment}
+                        onChange={handlePayment}
                         value="cash"
-                        // checked={paymentMethod === "cash"}
+                        checked={paymentMethod === "cash"}
                         type="radio"
                       />
                       <label
@@ -342,9 +343,9 @@ function Checkout() {
                       <input
                         id="card"
                         name="payments"
-                        // onChange={handlePayment}
+                        onChange={handlePayment}
                         value="card"
-                        // checked={paymentMethod === "card"}
+                        checked={paymentMethod === "card"}
                         type="radio"
                       />
                       <label
@@ -389,20 +390,20 @@ function Checkout() {
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
                         <div className="text-gray-500 cart-item-quantity">
-                          <label htmlFor="quantity">Qty</label>
-                          <select
-                            onChange={handleQuantityChange}
-                            value={item.quantity}
-                          >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
+                        <label htmlFor="quantity">Qty : </label>
+                    <select
+                      onChange={(e) => updateQuantity(item._id, e.target.value)}
+                      value={item.quantity}
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
                         </div>
                         <div className="flex cart-item-remove">
-                          <button onClick={handleRemoveItem} type="button">
+                          <button onClick={(e) => handleRemove(e, item._id)} type="button">
                             Remove
                           </button>
                         </div>
@@ -416,11 +417,11 @@ function Checkout() {
 
           <div className="border-t border-gray-200 px-2 py-6">
             <div className="flex justify-between my-2 text-base font-medium text-gray-900">
-              <p>Subtotal</p>
-              <p>$ {totalAmount}</p>
+              <p>Subtotal : ${totalAmount}</p>
+              {/* <p>$ {totalAmount}</p> */}
             </div>
             <div className="flex justify-between my-2 text-base font-medium text-gray-900">
-              <p>Total Items in Cart</p>
+              <p>Total Items in Cart : {totalItems} items</p>
               {/* <p>{totalItems} items</p> */}
             </div>
             <p className="mt-0.5 text-sm text-gray-500">
@@ -449,6 +450,7 @@ function Checkout() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -228,3 +228,14 @@ a {
   color: white;
   margin-top: 10px;
 }
+
+.or {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 600px;
+  /* background-color: blue; */
+  /* color: white; */
+  margin-top: 10px;
+}

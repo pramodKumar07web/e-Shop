@@ -1,0 +1,48 @@
+/* FilterPage.module.css */
+.filterPage {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+}
+
+.filterPage.visible {
+  right: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.header button{
+  width: 64px;
+  height: 40px;
+  background: red;
+  color: white;
+}
+
+.content {
+  padding: 5px;
+}
+
+.filterGroup {
+  margin-bottom: 20px;
+}
+
+.filterGroup label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filterGroup input,
+.filterGroup select {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}

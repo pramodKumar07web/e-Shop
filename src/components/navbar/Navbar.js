@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import NavbarStyle from './Navbar.module.css'
 import { Link } from "react-router-dom";
+import UserContext from '../context/UserContext';
 
 function Navbar (){
+  const {userId, userInfo} = useContext(UserContext)
     return(
         <>
         <nav className={NavbarStyle.Nav}>
@@ -13,7 +16,7 @@ function Navbar (){
           <Link to="/" className={NavbarStyle.li}>
               <i class="fa-solid fa-house"></i> Home
             </Link>
-            <Link to="/filter-page" className={NavbarStyle.li}>
+            <Link to="/filter" className={NavbarStyle.li}>
             <i class="fa-solid fa-cart-shopping"></i> Filter
             </Link>
           
@@ -23,22 +26,22 @@ function Navbar (){
             <Link to="/cart-page" className={NavbarStyle.li}>
             <i class="fa-solid fa-cart-shopping"></i> Cart
             </Link>
-         
-            <Link to="/login" className={NavbarStyle.li}>
+          {!userId ? <Link to="/login" className={NavbarStyle.li}>
             <i class="fa-solid fa-user"></i>  Signin
-            </Link>
-            <Link to="/SignUp" className={NavbarStyle.li}>
+            </Link>:null}
+           
+            {!userId ?  <Link to="/SignUp" className={NavbarStyle.li}>
             <i class="fa-solid fa-user-plus"></i>   Signup
-            </Link>
-            <Link to="/order-page" className={NavbarStyle.li}>
+            </Link>:null}
+            {/* <Link to="/order-page" className={NavbarStyle.li}>
             <i class="fa-solid fa-user-plus"></i>   UserOrders
-            </Link>
+            </Link> */}
             <Link to="/logout" className={NavbarStyle.li}>
             <i class="fa-solid fa-user-plus"></i>   Logout
             </Link>
-            <Link to="/admin-page" className={NavbarStyle.li}>
+           {userInfo && userInfo.role === 'admin' && <Link to="/admin-page" className={NavbarStyle.li}>
             <i class="fa-solid fa-user-plus"></i>   Admin
-            </Link>
+            </Link>}
           </div>
         </div>
        

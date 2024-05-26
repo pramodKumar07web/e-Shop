@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import DashboardStyle from './Dashboard.module.css'
 import { Link } from "react-router-dom";
+import UserContext from '../context/UserContext';
 
 function Dashboard() {
+  const {userInfo,userId} = useContext(UserContext)
   return (
     <>
 
@@ -22,9 +24,19 @@ function Dashboard() {
                 <span>My Cart</span>
               </p>
             </Link>
-            <Link>
+            <Link to='/profileUpdate'>
               <p className={DashboardStyle.links}>
                 <span>Update Profile</span>
+              </p>
+            </Link>
+            <Link to="/order-page">
+              <p className={DashboardStyle.links}>
+                <span>My Orders</span>
+              </p>
+            </Link>
+            <Link to="/addAddress">
+              <p className={DashboardStyle.links}>
+                <span>Addresses</span>
               </p>
             </Link>
            
@@ -36,15 +48,15 @@ function Dashboard() {
           </p>
           <div className={DashboardStyle.admin_links}>
             <p className={DashboardStyle.links}>
-              <span>Pramod Kumar</span>
+              <span>{userInfo.name}</span>
             </p>
 
             <p className={DashboardStyle.links}>
-              <span>pramod123@gmail.com</span>
+              <span>{userInfo.email}</span>
             </p>
 
             <p className={DashboardStyle.links}>
-              <span>Registered user</span>s
+              <span>{userId?"Registered user":"User Unregistered"}</span>s
             </p>
           </div>
           <p className={DashboardStyle.bold1}>
