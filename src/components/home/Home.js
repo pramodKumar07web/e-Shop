@@ -1,6 +1,7 @@
 import HomeStyle from "./Home.module.css";
 import { Product } from "../products/Product";
 import FilterToggle from "../filter/FilterToggle";
+import ProductList from "../products/ProductList";
 
 function Home() {
 
@@ -26,7 +27,8 @@ function Home() {
           <div className={HomeStyle.search}>SEARCH</div>
         </div>
        {/* <Product/> */}
-       <FilterToggle/>
+       {/* <FilterToggle/> */}
+       <ProductList/>
       </div>
     </>
   );

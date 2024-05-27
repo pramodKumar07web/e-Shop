@@ -4,14 +4,13 @@ import AdminStyle from "./Admin.module.css";
 import UserContext from "../context/UserContext";
 
 const Admin = () => {
-  const {userId} = useContext(UserContext)
-  console.log("admin",userId)
+  const { userInfo } = useContext(UserContext);
   return (
     <>
      
       <div className={AdminStyle.home_page}>
           <h1>Dashboard Admin</h1>
-          <p>Wellcome to the world of fashion</p>
+          <p>WellCome to the world of fashion</p>
         </div>
       <div className={AdminStyle.admin_container}>
         <div className={AdminStyle.admin}>
@@ -23,11 +22,6 @@ const Admin = () => {
             <Link>
               <p className={AdminStyle.links}>
                 <span>Create Category</span>
-              </p>
-            </Link>
-            <Link to='/product-form'>
-              <p className={AdminStyle.links}>
-                <span>Create Product</span>
               </p>
             </Link>
             <Link>
@@ -48,15 +42,15 @@ const Admin = () => {
           </p>
           <div className={AdminStyle.admin_links}>
             <p className={AdminStyle.links}>
-              <span>Pramod Kumar</span>
+              <span>{userInfo.name}</span>
             </p>
 
             <p className={AdminStyle.links}>
-              <span>pramod123@gmail.com</span>
+              <span>{userInfo.email}</span>
             </p>
 
             <p className={AdminStyle.links}>
-              <span>Admin</span>s
+              <span>{userInfo.role}</span>
             </p>
           </div>
         </div>

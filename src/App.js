@@ -7,7 +7,6 @@ import ProductsDetailsPage from "./page/ProductDetailsPage";
 import AdminPage from "./page/AdminPage";
 import DashboardPage from "./page/DashboardPage";
 import CartPage from "./page/CartPage";
-import ProductForm from "./components/products/ProductForm";
 import { UserProvider } from "./components/context/UserProvider";
 import Protected from "./components/auth/Protected";
 import Logout from "./components/auth/Logout";
@@ -23,6 +22,7 @@ import ProfileUpdate from "./components/user/ProfileUpdate";
 import AddAddress from "./components/user/AddAddress";
 import SuccessPage from "./page/SuccessPage";
 import AdminProductList from "./components/admin/Components/AdminProductList";
+import AdminProductFormPage from "./page/AdminProductFormPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +38,22 @@ const router = createBrowserRouter([
     element: (
       <Protected>
         <AdminProductList></AdminProductList>
+      </Protected>
+    ),
+  },
+  {
+    path: "/admin/product-form",
+    element: (
+      <Protected>
+        <AdminProductFormPage></AdminProductFormPage>
+      </Protected>
+    ),
+  },
+  {
+    path: "/admin/product-form/edit/:id",
+    element: (
+      <Protected>
+        <AdminProductFormPage></AdminProductFormPage>
       </Protected>
     ),
   },
@@ -99,14 +115,7 @@ const router = createBrowserRouter([
       </Protected>
     ),
   },
-  {
-    path: "/product-form",
-    element: (
-      <Protected>
-        <ProductForm></ProductForm>
-      </Protected>
-    ),
-  },
+
   {
     path: "/logout",
     element: (

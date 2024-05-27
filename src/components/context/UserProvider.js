@@ -16,7 +16,9 @@ export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [currentOrder, setCurrentOrder] = useState(null);
-  // const [cardLoaded, setCardLoaled] = useState(false)
+  const [brand, setBrand] =useState([])
+  const [categories, setCategories] = useState([])
+// console.log('brand',brand)
 
   const login = (id) => {
     // Perform login actions and set isLoggedIn to true
@@ -164,6 +166,8 @@ export const UserProvider = ({ children }) => {
         setUniqueBrands,
         selectedCategories,
         setSelectedCategories,
+        brand, setBrand,
+        categories, setCategories
       }}
     >
       {children}

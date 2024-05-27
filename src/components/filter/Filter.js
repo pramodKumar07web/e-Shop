@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import UserContext from "../context/UserContext";
+import Navbar from "../navbar/Navbar";
 
 function Filter() {
-  const {maxPrice, setMaxPrice,minPrice, setMinPrice,selectedBrands, setSelectedBrands,products, setProducts,uniqueCategories, setUniqueCategories,uniqueBrands, setUniqueBrands,selectedCategories, setSelectedCategories,} = useContext(UserContext)
+  const {categories, setCategories, brand, setBrand, maxPrice, setMaxPrice,minPrice, setMinPrice,selectedBrands, setSelectedBrands,products, setProducts,uniqueCategories, setUniqueCategories,uniqueBrands, setUniqueBrands,selectedCategories, setSelectedCategories,} = useContext(UserContext)
   // const [products, setProducts] = useState([]);
   // const [uniqueCategories, setUniqueCategories] = useState(new Set());
   // const [uniqueBrands, setUniqueBrands] = useState(new Set());
@@ -15,14 +16,24 @@ function Filter() {
   // const [maxPrice, setMaxPrice] = useState(null);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isBrandDropdownOpen, setIsBrandDropdownOpen] = useState(false);
+  // const [brand, setBrand] =useState([])
+  // console.log('brand',brand)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3005/product");
         // setProductShow(response.data.Product);
-        // console.log("responseProduct", response.data.product);
+        // console.log("responseProductbrad", response.data.product);
         setProducts(response.data.product);
+        const brandd = (
+          response.data.product.map((product) => product.brand)
+        );
+        setBrand(brandd)
+        const cate = (
+          response.data.product.map((product) => product.category)
+        );
+        setCategories(cate)
         // Extract unique categories from products
         const categoriesSet = new Set(
           response.data.product.map((product) => product.category)
@@ -95,6 +106,7 @@ function Filter() {
 
   return (
     <>
+      {/* <Navbar/> */}
       <div className={FilterStyle.filter_container}>
         <div className={FilterStyle.fixd_left}>
           <h3 className={FilterStyle.h3}>Filter by</h3>
@@ -172,6 +184,7 @@ function Filter() {
           </div>
         </div>
         </div>
+      
        
      {/* // products */}
      
