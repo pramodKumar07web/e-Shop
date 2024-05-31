@@ -1,0 +1,145 @@
+/* OrderList.module.css */
+.overflowXAuto {
+    overflow-x: auto;
+  }
+  
+  .container {
+    background-color: #f7fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .tableContainer {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 0.375rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    table-layout: auto;
+  }
+  
+  .tableHeader {
+    background-color: #edf2f7;
+    color: #4a5568;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .headerCell {
+    padding: 0.75rem 0.25rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .headerIcon {
+    height: 1rem;
+    width: 1rem;
+    display: inline;
+  }
+  
+  .tableBody {
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 300;
+  }
+  
+  .tableRow {
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .tableRow:hover {
+    background-color: #f7fafc;
+  }
+  
+  .cell {
+    padding: 0.75rem 0.25rem;
+    text-align: left;
+    /* white-space: nowrap; */
+  }
+  
+  .cellCenter {
+    text-align: center;
+  }
+  
+  .itemContainer {
+    display: flex;
+    align-items: center;
+    
+  }
+
+  .mr{
+    margin-right: 1px;
+  }
+  
+  .itemImage {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    margin-right: 0.5rem;
+  }
+  
+  .status {
+    padding: 0.25rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+  }
+  
+  .actionsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .actionIcon {
+    width: 1.5rem;
+    height: 2rem;
+    margin-right: 1rem;
+    transition: transform 0.15s ease-in-out, color 0.15s ease-in-out;
+  }
+  
+  .actionIcon:hover {
+    color: #9f7aea;
+    transform: scale(1.1);
+  }
+
+
+  /* Define the color classes */
+.bgPurple200 {
+  background-color: #e9d8fd;
+}
+.textPurple600 {
+  color: #6b46c1;
+}
+
+.bgYellow200 {
+  background-color: #fefcbf;
+}
+.textYellow600 {
+  color: #d69e2e;
+}
+
+.bgGreen200 {
+  background-color: #c6f6d5;
+}
+.textGreen600 {
+  color: #38a169;
+}
+
+.bgRed200 {
+  background-color: #fed7d7;
+}
+.textRed600 {
+  color: #e53e3e;
+}
+
+  

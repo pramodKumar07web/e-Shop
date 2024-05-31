@@ -7,6 +7,7 @@ import axios from "axios";
 function Checkout() {
   const { userInfo, totalItems, totalAmount, cartItems, setCartItems, fetchCartItems, currentOrder ,setCurrentOrder, fetchLoggedInUser  } =
     useContext(UserContext);
+    console.log('currentOrder',currentOrder)
       const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState(null);
   // const [currentOrder, setCurrentOrder] = useState(null);
@@ -123,12 +124,12 @@ function Checkout() {
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
       {currentOrder && currentOrder.paymentMethod === "cash" && (
         <Navigate
-          to={`/order-success/${currentOrder.id}`}
+          to={`/order-success/${currentOrder._id}`}
           replace={true}
         ></Navigate>
       )}
       {currentOrder && currentOrder.paymentMethod === "card" && (
-        <Navigate to={`/stripe-checkout/`} replace={true}></Navigate>
+        <Navigate to={`/stripe-checkout`} replace={true}></Navigate>
       )}
     <div className="containerx">
       <div className="lg-col-span-3">

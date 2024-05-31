@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./ProductForm.module.css";
 import axios from "axios";
 import { useAlert } from "react-alert";
@@ -406,12 +406,14 @@ const handleSubmit = async (e) => {
           />
         </div>
         <div className={styles.buttonGroup}>
+          <Link to="/admin">
           <button
             type="button"
             className={`${styles.button} ${styles.buttonCancel}`}
           >
             Cancel
           </button>
+          </Link>
           <button type="submit" className={styles.button}>
             Save
           </button>

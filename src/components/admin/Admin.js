@@ -19,12 +19,12 @@ const Admin = () => {
           </p>
           <div className={AdminStyle.admin_links}>
          
-            <Link>
+            <Link to='/admin/category_brand'>
               <p className={AdminStyle.links}>
-                <span>Create Category</span>
+                <span>Create Category and Brand</span>
               </p>
             </Link>
-            <Link>
+            <Link to="/view-orders">
               <p className={AdminStyle.links}>
                 <span>View Order</span>s
               </p>

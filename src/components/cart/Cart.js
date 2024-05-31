@@ -5,10 +5,8 @@ import axios from "axios";
 import UserContext from "../context/UserContext";
 
 function Cart() {
-  const { totalAmount, totalItems, cartItems, setCartItems, fetchCartItems } =
+  const { totalAmount, totalItems, cartItems, handleRemove, fetchCartItems } =
     useContext(UserContext);
-  // console.log('responseCartItems',cartItems)
-
 
   const updateQuantity = async (id, quantity) => {
     try {
@@ -26,22 +24,22 @@ function Cart() {
   };
   
 
-  const handleRemove = async (e, id) => {
-    try {
-      // Make a request to remove the item from the cart based on its id
-      const response = await axios.delete(
-        `http://localhost:3005/api/cart/${id}`
-      );
-      // Update the cart items after successful removal
-      if (response) {
-        setCartItems((prevItems) =>
-          prevItems.filter((item) => item._id !== id)
-        );
-      }
-    } catch (error) {
-      console.error("Error removing item from the cart:", error);
-    }
-  };
+  // const handleRemove = async (e, id) => {
+  //   try {
+  //     // Make a request to remove the item from the cart based on its id
+  //     const response = await axios.delete(
+  //       `http://localhost:3005/api/cart/${id}`
+  //     );
+  //     // Update the cart items after successful removal
+  //     if (response) {
+  //       setCartItems((prevItems) =>
+  //         prevItems.filter((item) => item._id !== id)
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.error("Error removing item from the cart:", error);
+  //   }
+  // };
 
   // makePayment integration
 
@@ -101,7 +99,7 @@ function Cart() {
                     </Link>
                     <button
                       type="button"
-                      onClick={(e) => handleRemove(e, item._id)}
+                      onClick={() => handleRemove(item._id)}
                       className={CartStyle.cart}
                     >
                       REMOVE PRODUCT

@@ -10,6 +10,7 @@ export const UserProvider = ({ children }) => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
+  const [totalProducts, setTotalProducts] = useState(0);  // New state for total products
 
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const [userId, setUserId] = useState(null);
@@ -18,7 +19,10 @@ export const UserProvider = ({ children }) => {
   const [currentOrder, setCurrentOrder] = useState(null);
   const [brand, setBrand] =useState([])
   const [categories, setCategories] = useState([])
+  const [orders, setOrders] = useState([]);
 // console.log('brand',brand)
+const [categoriess, setCategoriess] = useState([]);
+const [brandss, setBrandss] = useState([]);
 
   const login = (id) => {
     // Perform login actions and set isLoggedIn to true
@@ -82,7 +86,7 @@ export const UserProvider = ({ children }) => {
         `http://localhost:3005/api/cart/${userId}`
       );
       if (response) {
-        console.log("response", response.data);
+        // console.log("response", response.data);
         setCartItems(response.data);
       } else {
         console.error("Failed to fetch cart items");
@@ -99,6 +103,70 @@ export const UserProvider = ({ children }) => {
     }
   }, [userId]);
 
+  const handleRemove = async (id) => {
+    try {
+      // Make a request to remove the item from the cart based on its id
+      const response = await axios.delete(
+        `http://localhost:3005/api/cart/${id}`
+      );
+      // Update the cart items after successful removal
+      if (response) {
+        setCartItems((prevItems) =>
+          prevItems.filter((item) => item._id !== id)
+        );
+      }
+    } catch (error) {
+      console.error("Error removing item from the cart:", error);
+    }
+  };
+
+  // const clearCart = () => {
+  //   setCartItems([]);
+  // };
+
+  // useEffect(() => {
+    // Fetch orders from the API
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get("http://localhost:3005/orders");
+        setOrders(response.data);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+   
+  // }, []);
+
+  const orderUpdate = async (updateOrder) => {
+    try {
+      const response = await axios.patch(`http://localhost:3005/updateOrder/${updateOrder._id}`, updateOrder);
+      
+      if (response && response.status === 200) {
+        console.log("Order updated successfully", response.data);
+        fetchOrders(); // Refresh the orders list after a successful update
+      } else {
+        console.error("Failed to update order", response);
+      }
+    } catch (error) {
+      // Enhanced error handling
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error("Server responded with an error:", error.response.data);
+        console.error("Status code:", error.response.status);
+        console.error("Headers:", error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("No response received:", error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error setting up request:", error.message);
+      }
+      console.error("Error config:", error.config);
+    }
+  };
+  
+
   const getTotalAmount = () => {
     let total = 0;
     cartItems.forEach((item) => {
@@ -114,10 +182,22 @@ export const UserProvider = ({ children }) => {
 
   // Calculate total amount
   const totalAmount = getTotalAmount();
+
   const totalItems = cartItems.reduce(
     (total, item) => item.quantity + total,
     0
   );
+
+  // const totalProduct = products.reduce(
+  //   (total, item) => item + total,
+  //   0
+  // );
+
+  // const totalProduct = products.reduce(
+  //   (total, item) => total + item.,
+  //   0
+  // );
+// console.log('totalProduct',totalProduct)
 
   const filteredProducts = products.filter((product) => {
     const isCategoryMatch =
@@ -134,6 +214,27 @@ export const UserProvider = ({ children }) => {
     return isCategoryMatch && isBrandMatch && isPriceInRange;
   });
 
+
+    useEffect(() => {
+    // Fetch categories and brands on component mount
+    const fetchCategoriesAndBrands = async () => {
+      try {
+        const [categoriesResponse, brandsResponse] = await Promise.all([
+          axios.get("http://localhost:3005/categories"),
+          axios.get("http://localhost:3005/brands")
+        ]);
+        setCategoriess(categoriesResponse.data);
+        setBrandss(brandsResponse.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchCategoriesAndBrands();
+  }, []);
+
+
+
   return (
     <UserContext.Provider
       value={{
@@ -147,6 +248,11 @@ export const UserProvider = ({ children }) => {
         filteredProducts,
         setCurrentOrder,
         setCartItems,
+        handleRemove,
+        // clearCart,
+        fetchOrders,
+        orders,
+        orderUpdate,
         setUserId,
         login,
         logout,
@@ -167,7 +273,10 @@ export const UserProvider = ({ children }) => {
         selectedCategories,
         setSelectedCategories,
         brand, setBrand,
-        categories, setCategories
+        categories, setCategories,
+        totalProducts, setTotalProducts,
+        categoriess, setCategoriess,
+        brandss, setBrandss,
       }}
     >
       {children}

@@ -23,6 +23,8 @@ import AddAddress from "./components/user/AddAddress";
 import SuccessPage from "./page/SuccessPage";
 import AdminProductList from "./components/admin/Components/AdminProductList";
 import AdminProductFormPage from "./page/AdminProductFormPage";
+import ViewOrders from "./components/admin/Components/ViewOrders";
+import AddCategoryBrand from "./components/admin/Components/AddCategoryBrand";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/admin/category_brand",
+    element: (
+      <Protected>
+        <AddCategoryBrand></AddCategoryBrand>
+      </Protected>
+    ),
+  },
+  {
     path: "/admin/product-form",
     element: (
       <Protected>
@@ -54,6 +64,14 @@ const router = createBrowserRouter([
     element: (
       <Protected>
         <AdminProductFormPage></AdminProductFormPage>
+      </Protected>
+    ),
+  },
+  {
+    path:"/view-orders",
+    element: (
+      <Protected>
+        <ViewOrders></ViewOrders>
       </Protected>
     ),
   },
@@ -110,8 +128,8 @@ const router = createBrowserRouter([
     path: "/admin-page",
     element: (
       <Protected>
-        {" "}
-        <AdminPage></AdminPage>{" "}
+    
+        <AdminPage></AdminPage>
       </Protected>
     ),
   },
@@ -131,13 +149,13 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/success",
+    path: "/order-success/:id",
     element: (
       <SuccessPage></SuccessPage>
     ),
   },
   {
-    path: "/checkout/",
+    path: "/checkout",
     element: (
       <Protected>
         <Checkout></Checkout>
