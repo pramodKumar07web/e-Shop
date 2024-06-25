@@ -4,36 +4,19 @@ import UserContext from "../context/UserContext";
 
 function Filter() {
   const {
-    categoriess, setCategoriess,
-    brandss, setBrandss,
-    setCategories,
-    setBrand,
+    categories,
+    brands,
     maxPrice,
     setMaxPrice,
     minPrice,
     setMinPrice,
     selectedBrands,
     setSelectedBrands,
-    setProducts,
-    uniqueCategories,
-    setUniqueCategories,
-    uniqueBrands,
-    setUniqueBrands,
     selectedCategories,
     setSelectedCategories,
-    setTotalProducts,
   } = useContext(UserContext);
-  // const [products, setProducts] = useState([]);
-  // const [uniqueCategories, setUniqueCategories] = useState(new Set());
-  // const [uniqueBrands, setUniqueBrands] = useState(new Set());
-  // const [selectedCategories, setSelectedCategories] = useState([]);
-  // const [selectedBrands, setSelectedBrands] = useState([]);
-  // const [minPrice, setMinPrice] = useState(null);
-  // const [maxPrice, setMaxPrice] = useState(null);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isBrandDropdownOpen, setIsBrandDropdownOpen] = useState(false);
-  // const [brand, setBrand] =useState([])
-  // console.log('brandsssssssssss',brandss)
 
 
 
@@ -62,21 +45,6 @@ function Filter() {
     }
   };
 
-  //   const filteredProducts = products.filter((product) => {
-  //   const isCategoryMatch =
-  //     selectedCategories.length === 0 ||
-  //     selectedCategories.includes(product.category);
-
-  //   const isBrandMatch =
-  //     selectedBrands.length === 0 || selectedBrands.includes(product.brand);
-
-  //   const isPriceInRange =
-  //     (!minPrice || product.price >= minPrice) &&
-  //     (!maxPrice || product.price <= maxPrice);
-
-  //   return isCategoryMatch && isBrandMatch && isPriceInRange;
-  // });
-
   const handlePriceChange = (event) => {
     const { name, value } = event.target;
 
@@ -89,7 +57,6 @@ function Filter() {
 
   return (
     <>
-      {/* <Navbar/> */}
       <div className={FilterStyle.filter_container}>
         <div className={FilterStyle.fixd_left}>
           <h3 className={FilterStyle.h3}>Filter by</h3>
@@ -102,7 +69,7 @@ function Filter() {
             </h4>
             {isCategoryDropdownOpen && (
               <div className={FilterStyle.list_mr}>
-                {categoriess.map((cate, index) => (
+                {categories.map((cate, index) => (
                   <div key={index} className={FilterStyle.categories_list}>
                     <input
                       type="checkbox"
@@ -128,7 +95,7 @@ function Filter() {
             </h4>
             {isBrandDropdownOpen && (
               <div className={FilterStyle.list_mr}>
-                {brandss.map((br,index) => (
+                {brands.map((br,index) => (
                   <div key={index} className={FilterStyle.categories_list}>
                     <input
                       type="checkbox"
@@ -173,8 +140,6 @@ function Filter() {
             </div>
           </div>
         </div>
-
-        {/* // products */}
       </div>
     </>
   );

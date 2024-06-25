@@ -56,10 +56,10 @@ function SignUp() {
 
   return (
     <>
-      <div className={SignUpStyle.home_page}>
+      {/* <div className={SignUpStyle.home_page}>
         <h1>SignUp Page</h1>
         <p>WellCome to the world of fashion</p>
-      </div>
+      </div> */}
       <div className={SignUpStyle.login_content}>
         <div className={SignUpStyle.login_container}>
           <div className={SignUpStyle.lockIcon}>
@@ -121,8 +121,8 @@ function SignUp() {
             <Link to="/login">Already have an account? Sign in</Link>
           </div>
         </div>
-        <div className={SignUpStyle.name}>
-          <span className={SignUpStyle.copyright}>
+        <div className={SignUpStyle.copyright}>
+          <span>
             Copyright @ Shopify 2023{" "}
           </span>
         </div>

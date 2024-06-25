@@ -1,366 +1,197 @@
+/* AddAddress.module.css */
 
-.container{
-    display: flex;
-    justify-content: center;
-    width: 80vw;
+.heading {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.addBtn{
-    height: 40px;
-    width: 150px;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin: 50px;
-}
-
-.btnFlex{
+.container {
   display: flex;
-  flex-direction: column;
-  margin-left: 30px;
-  
+  justify-content: center;
+  padding: 20px;
 }
 
-.edit{
-  color: blue;
+.content {
+  max-width: 900px;
+  width: 100%;
+}
+
+.userInfo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.userName {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.userEmail,
+.userRole {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.addBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: rgb(25, 207, 25);
   border: none;
-  font-size: 1.1rem;
+  border-radius: 7px;
+
 }
-.remove{
-  color: blue;
-  margin-top: 10px;
+.addBtn:hover{
+  background-color: rgb(74, 74, 244);
+}
+
+.customForm {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+}
+
+.spaceY12 {
+  margin-bottom: 12px;
+}
+
+.borderB {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.formHeading {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.formDescription {
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
+
+.formGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.formColumn {
+  flex: 1;
+  min-width: 200px;
+}
+
+.formColumnFull {
+  flex: 1 100%;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.formInput {
+  display: flex;
+  align-items: center;
+}
+
+.formField {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.flexItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.formReset,
+.formSubmit {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
   border: none;
-  font-size: 1.1rem;
+  border-radius: 4px;
+}
+
+.formReset {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.formSubmit {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.addressContainer {
+  margin-top: 20px;
+}
+
+.addressList {
+  list-style: none;
+  padding: 0;
+}
+
+.addressItem {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addressDetails {
+  /* flex: 1; */
+}
+
+.addressName {
+  font-weight: bold;
+}
+
+.addressStreet,
+.addressCity,
+.addressPin,
+.addressState,
+.addressPhone {
+  margin: 5px 0;
+}
+
+.btnFlex {
+  display: flex;
+  gap: 10px;
+}
+
+.edit,
+.remove {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.edit {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.remove {
+  background-color: #f44336;
+  color: #fff;
 }
 
 
-/* ********************************************************************************** */
-
-.container{
-    /* background-color: aqua; */
-}
-.lg-col-span-3{
-    width: 50vw;
-    display: inline-block;
-}
-
-.custom-form {
-    width: 50vw;
-    /* height: 43vw; */
-    background-color: #fff;
-    /* background-color: #a81a1a; */
-    padding: 0 1rem 3rem;
-  }
-  
-  .form-heading {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .form-description {
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    color: #666;
-  }
-  
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1rem;
-  }
-  
-  .form-column {
-    grid-column: span 3;
-  }
-  
-  .form-column-full {
-    grid-column: span 6;
-  }
-  
-  .form-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .form-input {
-    margin-top: 0.5rem;
-  }
-  
-  .form-field {
-    width: 80%;
-    padding: 0.375rem 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    color: #333;
-  }
-  
-  .form-reset {
-    width: 3vw;
-    height: 1.5vw;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #333;
-    margin-top: 10px;
-  }
-  
-  .form-submit {
-    border: none;
-    background-color: #4a90e2;
-    color: #fff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-
-
-  /* //)))))))))))))))))))))))))))))))))))) */
-
-
-  .address-container {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    /* padding-bottom: 3rem; */
-  }
-  
-  .address-heading {
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.75rem;
-    color: #1f2937;
-  }
-  
-  .address-description {
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: #4b5563;
-  }
-  
-  .address-list {
-    margin-top: 1rem;
-  }
-  
-  .address-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border: 2px solid #e5e7eb;
-    /* margin-bottom: 1rem; */
-  }
-  
-  .address-item input[type="radio"] {
-    width: 1rem;
-    height: 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
-  }
-  
-  .address-details {
-    display: flex;
-    gap: 1rem;
-    flex: 1;
-  }
-  
-  .address-details p {
-    margin: 0;
-  }
-  
-  .payment-methods-container {
-    margin-top: 2rem;
-  }
-  
-  .payment-methods-heading {
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.75rem;
-    color: #1f2937;
-  }
-  
-  .payment-methods-description {
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: #4b5563;
-  }
-  
-  .payment-methods-list {
-    margin-top: 1rem;
-  }
-  
-  .payment-method {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  .payment-method input[type="radio"] {
-    width: 1rem;
-    height: 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
-  }
-  
-
-
-  /* //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-
-
-.lg-col-span-2{
-    float: right;
-    /* width: 100%; */
-/* height: auto; */
-
-}
-  .cart-container {
-    width: 35vw;
-    /* height: auto; */
-    /* max-width: 7xl; */
-    background-color: #fff;
-    /* background-color: #27c432; */
-    padding: 0 2rem;
-  }
-  
-  .cart-heading {
-    font-size: 2.25rem;
-    font-weight: bold;
-    line-height: 1.25;
-    color: #333;
-    margin-bottom: 1.25rem;
-  }
-  
-  .cart-item {
-    display: flex;
-    padding: 1.5rem 0;
-    border-top: 1px solid #e5e7eb;
-  }
-  
-  .cart-item-image {
-    flex-shrink: 0;
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.375rem;
-  }
-  
-  .cart-item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .cart-item-details {
-    margin-left: 1rem;
-  }
-  
-  .cart-item-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .cart-item-price {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    color: #4b5563;
-  }
-  
-  .cart-item-brand {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #4b5563;
-  }
-  
-  .cart-item-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-  }
-  
-  .cart-item-quantity label {
-    font-size: 0.875rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .cart-item-quantity select {
-    margin-left: 0.5rem;
-    padding: 0.375rem 0.75rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.25rem;
-  }
-  
-  .cart-item-remove button {
-    font-size: 0.875rem;
-    color: #4b5563;
-  }
-  
-  .cart-total {
-    margin-top: 1.5rem;
-    font-size: 1.125rem;
-    color: #333;
-  }
-  
-  .cart-total-items {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    color: #4b5563;
-  }
-  
-  .cart-shipping-info {
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    color: #4b5563;
-  }
-  
-  .cart-action-buttons {
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .cart-action-button {
-    cursor: pointer;
-    padding: 0.75rem 2rem;
-    border: none;
-    border-radius: 0.375rem;
-    background-color: #6366f1;
-    color: #fff;
-    font-size: 1.125rem;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cart-action-button:hover {
-    background-color: #4338ca;
-  }
-  
-  .continue-shopping-link button {
-    font-size: 1rem;
-    color: #6366f1;
-    font-weight: bold;
-    text-decoration: underline;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    /* text-align: center;
-    margin: 6px; */
-  }
-
-  .cart-action-button-or{
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 29px;
-  }
-  
+/* Responsive Design */
+@media (max-width: 320px) {
+  .addressItem {
+    display: block;  }}

@@ -6,12 +6,11 @@ import { useAlert } from "react-alert";
 import UserContext from "../../context/UserContext";
 
 function ProductForm() {
-  const { uniqueCategories, uniqueBrands, brand, categories } =
+  const {  categories,
+    brands, } =
     useContext(UserContext);
-  // console.log('uniqueBrands',uniqueBrands)
   const alert = useAlert();
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -40,7 +39,6 @@ function ProductForm() {
             `http://localhost:3005/products/${id}`
           );
           const data = response.data.product[0];
-        //   console.log("datadata", data);
           if (data) {
             setFormData({
               title: data.title,
@@ -198,8 +196,8 @@ const handleSubmit = async (e) => {
           >
             <option value="">--choose brand--</option>
             {/* Map through available brands */}
-            {Array.from(uniqueBrands).map((brand) => (
-              <option value={brand}>{brand}</option>
+            {brands.map((br, index) => (
+              <option value={br.brand}>{br.brand}</option>
             ))}
           </select>
         </div>
@@ -257,8 +255,8 @@ const handleSubmit = async (e) => {
           >
             <option value="">--choose category--</option>
             {/* Map through available categories */}
-            {Array.from(uniqueCategories).map((category) => (
-              <option value={category}>{category}</option>
+            {categories.map((cate, index) => (
+              <option value={cate.category}>{cate.category}</option>
             ))}
           </select>
         </div>

@@ -8,10 +8,10 @@ const Admin = () => {
   return (
     <>
      
-      <div className={AdminStyle.home_page}>
+      {/* <div className={AdminStyle.home_page}>
           <h1>Dashboard Admin</h1>
           <p>WellCome to the world of fashion</p>
-        </div>
+        </div> */}
       <div className={AdminStyle.admin_container}>
         <div className={AdminStyle.admin}>
           <p className={AdminStyle.bold}>

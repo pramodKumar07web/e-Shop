@@ -4,8 +4,6 @@ import axios from "axios";
 
 export const UserProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [uniqueCategories, setUniqueCategories] = useState(new Set());
-  const [uniqueBrands, setUniqueBrands] = useState(new Set());
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [minPrice, setMinPrice] = useState(null);
@@ -17,12 +15,9 @@ export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [currentOrder, setCurrentOrder] = useState(null);
-  const [brand, setBrand] =useState([])
-  const [categories, setCategories] = useState([])
+  const [brands, setBrands] =useState([])
   const [orders, setOrders] = useState([]);
-// console.log('brand',brand)
-const [categoriess, setCategoriess] = useState([]);
-const [brandss, setBrandss] = useState([]);
+const [categories, setCategories] = useState([]);
 
   const login = (id) => {
     // Perform login actions and set isLoggedIn to true
@@ -101,7 +96,7 @@ const [brandss, setBrandss] = useState([]);
       fetchLoggedInUser();
       fetchCartItems();
     }
-  }, [userId]);
+  }, [ userId]);
 
   const handleRemove = async (id) => {
     try {
@@ -120,11 +115,6 @@ const [brandss, setBrandss] = useState([]);
     }
   };
 
-  // const clearCart = () => {
-  //   setCartItems([]);
-  // };
-
-  // useEffect(() => {
     // Fetch orders from the API
     const fetchOrders = async () => {
       try {
@@ -134,8 +124,6 @@ const [brandss, setBrandss] = useState([]);
         console.error("Error fetching orders:", error);
       }
     };
-   
-  // }, []);
 
   const orderUpdate = async (updateOrder) => {
     try {
@@ -188,17 +176,6 @@ const [brandss, setBrandss] = useState([]);
     0
   );
 
-  // const totalProduct = products.reduce(
-  //   (total, item) => item + total,
-  //   0
-  // );
-
-  // const totalProduct = products.reduce(
-  //   (total, item) => total + item.,
-  //   0
-  // );
-// console.log('totalProduct',totalProduct)
-
   const filteredProducts = products.filter((product) => {
     const isCategoryMatch =
       selectedCategories.length === 0 ||
@@ -223,8 +200,8 @@ const [brandss, setBrandss] = useState([]);
           axios.get("http://localhost:3005/categories"),
           axios.get("http://localhost:3005/brands")
         ]);
-        setCategoriess(categoriesResponse.data);
-        setBrandss(brandsResponse.data);
+        setCategories(categoriesResponse.data);
+        setBrands(brandsResponse.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -249,7 +226,6 @@ const [brandss, setBrandss] = useState([]);
         setCurrentOrder,
         setCartItems,
         handleRemove,
-        // clearCart,
         fetchOrders,
         orders,
         orderUpdate,
@@ -266,17 +242,11 @@ const [brandss, setBrandss] = useState([]);
         setSelectedBrands,
         products,
         setProducts,
-        uniqueCategories,
-        setUniqueCategories,
-        uniqueBrands,
-        setUniqueBrands,
         selectedCategories,
         setSelectedCategories,
-        brand, setBrand,
-        categories, setCategories,
         totalProducts, setTotalProducts,
-        categoriess, setCategoriess,
-        brandss, setBrandss,
+        categories, setCategories,
+        brands, setBrands,
       }}
     >
       {children}

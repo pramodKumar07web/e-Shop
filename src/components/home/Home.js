@@ -1,6 +1,4 @@
 import HomeStyle from "./Home.module.css";
-import { Product } from "../products/Product";
-import FilterToggle from "../filter/FilterToggle";
 import ProductList from "../products/ProductList";
 
 function Home() {
@@ -24,10 +22,10 @@ function Home() {
               placeholder="Search by name"
             />
           </div>
-          <div className={HomeStyle.search}>SEARCH</div>
+          <div className={HomeStyle.search}><i className="searchIcon fa fa-search"></i>
+          </div>
+          
         </div>
-       {/* <Product/> */}
-       {/* <FilterToggle/> */}
        <ProductList/>
       </div>
     </>

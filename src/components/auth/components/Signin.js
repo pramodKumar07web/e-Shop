@@ -40,10 +40,10 @@ function Signin() {
 
   return (
     <>
-      <div className={SignInStyle.home_page}>
+      {/* <div className={SignInStyle.home_page}>
         <h1>Sign In Page</h1>
         <p>WellCome to the world of fashion</p>
-      </div>
+      </div> */}
       <div className={SignInStyle.login_container}>
         <div className={SignInStyle.lockIcon}>
           <img src={lockIcon} alt="" />
@@ -59,7 +59,7 @@ function Signin() {
                 onChange={changeData}
               />
             </label>
-            <br />
+            {/* <br /> */}
             <label htmlFor="">
               <input
                 type="password"
@@ -71,7 +71,7 @@ function Signin() {
               />
             </label>
 
-            <br />
+            {/* <br /> */}
             <label htmlFor="">
               <button className={SignInStyle.btn} type="submit">
                 Sign In
@@ -80,9 +80,13 @@ function Signin() {
           </form>
           <br />
         </div>
-        <div style={{ marginLeft: "40px", marginTop: "15px" }}>
+        <div 
+        // style={{ marginLeft: "40px", marginTop: "15px" }}
+        >
           <Link to="/SignUp">Don't have an account? Sign up</Link>
-          <Link to="" style={{ textDecoration: "none", marginLeft: "5vw" }}>
+          <Link to=""
+           style={{ textDecoration: "none", marginLeft: "3vw" }}
+           >
             Forget Password?
           </Link>
         </div>

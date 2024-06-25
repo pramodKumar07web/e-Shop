@@ -5,7 +5,7 @@ import axios from "axios";
 import UserContext from "../context/UserContext";
 import { useAlert } from "react-alert";
 
-function ProductsDetails() {
+function AdminProductsDetails() {
   const alert = useAlert()
   const { id } = useParams();
   const { userId, fetchCartItems, cartItems } = useContext(UserContext);
@@ -73,10 +73,10 @@ function ProductsDetails() {
   };
   return (
     <>
-      {/* <div className={ProductStyle.home_page}>
+      <div className={ProductStyle.home_page}>
         <h1>Products Details Page</h1>
         <p>WellCome to the world of fashion</p>
-      </div> */}
+      </div>
       <div className={ProductStyle.container_center}>
       <div className={ProductStyle.cards_container}>
         {products !== null &&
@@ -115,14 +115,14 @@ function ProductsDetails() {
               </div>
 
               <h3>{product.title}</h3>
-              <p className={ProductStyle.p}>
+              <p className={ProductStyle.p3}>
                 {" "}
                 Price: $<strike>{product.price}</strike>
               </p>
               <p className={`${ProductStyle.p} ${ProductStyle.p3}`}>
                 Discount: {product.discountPercentage}%
               </p>
-              <p className={ProductStyle.p}>
+              <p className={ProductStyle.p3}>
                 Special Price : $
                 {Math.round(
                   product.price * (1 - product.discountPercentage / 100)
@@ -157,4 +157,4 @@ function ProductsDetails() {
   );
 }
 
-export default ProductsDetails;
+export default AdminProductsDetails;

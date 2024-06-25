@@ -10,19 +10,20 @@ function Cart() {
 
   const updateQuantity = async (id, quantity) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/cart/${id}`, { quantity });
+      const response = await axios.patch(`http://localhost:3005/cart/${id}`, {
+        quantity,
+      });
       const updatedItem = response.data;
-      if(updatedItem){
-        fetchCartItems()
+      if (updatedItem) {
+        fetchCartItems();
       }
       // setCartItems((prevItems) =>
       //   prevItems.map((item) => (item._id === id ? updatedItem : item))
       // );
     } catch (error) {
-      console.error('Error updating quantity', error);
+      console.error("Error updating quantity", error);
     }
   };
-  
 
   // const handleRemove = async (e, id) => {
   //   try {
@@ -44,17 +45,17 @@ function Cart() {
   // makePayment integration
 
   return (
-    <>
+    <div className={CartStyle.body}>
       {!cartItems.length && <Navigate to="/" replace={true}></Navigate>}
-      <div className={CartStyle.home_page}>
+      {/* <div className={CartStyle.home_page}>
         <h1>Cart Page</h1>
         <p>WellCome to the world of fashion</p>
-      </div>
+      </div> */}
       <div>
         <div className={CartStyle.cards_container}>
           <div className={CartStyle.items}>
-            <h3 className={CartStyle.details}>Products Details</h3>
-            
+
+            <h2 className={CartStyle.details}>Cart</h2>
             {cartItems &&
               cartItems.map((item) => (
                 <div className={CartStyle.cards1}>
@@ -63,13 +64,11 @@ function Cart() {
                     src={item.product.thumbnail}
                     alt=""
                   />
-                 <h3>id{item._id}</h3>
-                  <h3>{item.product.title}</h3>
-                  <p className={CartStyle.p3}>{item.product.brand}</p>
-                  <p className={`${CartStyle.p} ${CartStyle.p3}`}>
-                    Price: $<strike>{item.product.price}</strike>
-                  </p>
-                  <p className={CartStyle.p}>
+                   <h3 className={CartStyle.inline}>{item.product.title}</h3>
+                  
+                   <div className={CartStyle.p3}>
+                   <p className={CartStyle.g}>{item.product.brand}</p>
+                  <p className={CartStyle.specialPrice}>
                     {" "}
                     Special Price : $
                     {Math.round(
@@ -77,9 +76,14 @@ function Cart() {
                         (1 - item.product.discountPercentage / 100)
                     )}
                   </p>
-                  <div className={CartStyle.p}>
+                  <p className={`${CartStyle.price} ${CartStyle.p3p}`}>
+                    Price: $<strike>{item.product.price}</strike>
+                  </p>
+                  </div>
+                   <div className={CartStyle.updateQuantity}>
                     <label htmlFor="quantity">Qty : </label>
                     <select
+                      className={CartStyle.updateQuantitySelect}
                       onChange={(e) => updateQuantity(item._id, e.target.value)}
                       value={item.quantity}
                     >
@@ -90,9 +94,10 @@ function Cart() {
                       <option value="5">5</option>
                     </select>
                   </div>
-                  <p className={`${CartStyle.p} ${CartStyle.stock}`}>
+                  <p className={`${CartStyle.pp} ${CartStyle.stock}`}>
                     In Stock : {item.product.stock}
                   </p>
+                
                   <div className={CartStyle.product}>
                     <Link to={`/product-details/${item._id}`} key={item._id}>
                       <p className={CartStyle.view}>VIEW PRODUCT</p>
@@ -107,22 +112,14 @@ function Cart() {
                   </div>
                 </div>
               ))}
-            <p>Total Amount: ${totalAmount}</p>
-            <p>Total Items in Cart: {totalItems} Items</p>
-            <div>
-              <Link to="/checkout">
-                <button className={CartStyle.btn}>Checkout</button>
-              </Link>
-            </div>
-            <p  className={CartStyle.or}>
-                or
-                <Link to="/">
-                  <button type="button" >
-                    Continue Shopping
-                    <span aria-hidden="true"> &rarr;</span>
-                  </button>
-                </Link>
+            <div className={CartStyle.total}>
+              <p>
+                Total Amount: <span>${totalAmount}</span>
               </p>
+              <p>
+                Total Items in Cart:<span> {totalItems} Items</span>
+              </p>
+            </div>
           </div>
 
           {/* <div className={CartStyle.cards2}>
@@ -189,8 +186,22 @@ function Cart() {
             </div>
           </div> */}
         </div>
+        <div className={CartStyle.checkoutBtn}>
+          <Link to="/checkout">
+            <button className={CartStyle.btn}>Checkout</button>
+          </Link>
+          <p className={CartStyle.or}>
+            or
+            <Link to="/">
+              <button type="button">
+                Continue Shopping
+                <span aria-hidden="true"> &rarr;</span>
+              </button>
+            </Link>
+          </p>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

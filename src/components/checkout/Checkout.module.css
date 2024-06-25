@@ -1,198 +1,378 @@
 .containerx {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    padding: 2rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* padding: 2rem; */
+  width: 100vw;
+}
+
+.customForm {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.spaceY12 {
+  margin-bottom: 1.5rem;
+}
+
+.borderBottom {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1.5rem;
+}
+
+.formHeading {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.formDescription {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.formGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.formColumn {
+  flex: 1;
+  min-width: 200px;
+}
+
+.formColumnFull {
+  flex: 1 1 100%;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.formInput {
+  margin-bottom: 1.5rem;
+}
+
+.formField {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.formSubmitContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.formReset,
+.formSubmit {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.formReset {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.formSubmit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.addressContainer {
+  margin-top: 2rem;
+}
+
+.addressHeading {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.addressDescription {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.addressList {
+  list-style: none;
+  padding: 0;
+}
+
+.addressItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.addressDetails {
+  display: flex;
+  gap: 1rem;
+}
+
+.textSm {
+  font-size: 0.875rem;
+}
+
+.textXs {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.addressRight {
+  text-align: right;
+}
+
+.paymentMethodsContainer {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+.paymentMethodsContainer fieldset {
+  padding: 1rem;
+}
+
+.paymentMethodsHeading {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.paymentMethodsDescription {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.paymentMethodsList {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.paymentMethod {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.paymentMethodsLabel {
+  cursor: pointer;
+}
+
+.cartContainer {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding:2rem;
+}
+
+.cartHeader {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cartHeading {
+  font-size: 1.5rem;
+}
+
+.cartItems {
+  margin-bottom: 2rem;
+}
+
+.cartItemsList {
+  list-style: none;
+  padding: 0;
+}
+
+.cart {
+  height: 30vh;
+  /* display:flex; */
+  /* justify-content: space-between; */
+  /* padding: 1rem 0; */
+  border-bottom: 1px solid #dee2e6;
+}
+.cartItem {
+  /* height: 25vh; */
+  display:flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  /* border-bottom: 1px solid #dee2e6; */
+}
+
+.cartItemImage img {
+  max-width: 100px;
+ 
+}
+
+.cartItemDetails {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  margin-left: 1rem;
+ 
+}
+
+.cartItemTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.cartItemTitle h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cartItemPrice {
+  font-size: 1rem;
+  color: #28a745;
+  /* margin-left: 1rem; */
+}
+
+.cartItemBrand {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.cartItemActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  float: right;
+}
+
+.cartItemQuantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cartItemQuantitySelect {
+  padding: 0.25rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.cartItemRemove button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.cartSummaryContainer {
+  margin-top: 2rem;
+}
+
+.cartSummary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.cartNote {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.cartAction {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cartActionButtons {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cartContinue {
+  text-align: center;
+}
+
+.cartActionButtonOr {
+  font-size: 1rem;
+}
+
+.continueShoppingLink {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 320px) {
   
-  .lgColSpan3 {
-    flex: 1;
-    max-width: 60%;
+  .containerx {
+    padding: 1rem;
   }
-  
-  .customForm {
-    display: flex;
-    flex-direction: column;
+  .customForm{
+    box-shadow: none;
   }
-  
-  .formHeading {
-    font-size: 1.5rem;
-    font-weight: bold;
+  .cart {
+    height: 35vh;
   }
-  
-  .formDescription {
-    margin-bottom: 1rem;
-  }
-  
-  .formGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  
-  .formColumn,
-  .formColumnFull {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  .formColumnFull {
-    grid-column: span 2;
-  }
-  
-  .formLabel {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  .formInput {
-    margin-bottom: 1rem;
-  }
-  
-  .formField {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-  }
-  
-  .formReset,
-  .formSubmit {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
-  
-  .formReset {
-    background-color: #f5f5f5;
-    margin-right: 0.5rem;
-  }
-  
-  .formSubmit {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .addressContainer {
-    border-top: 1px solid #ccc;
-    padding-top: 1rem;
-  }
-  
-  .addressHeading {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  .addressDescription {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #666;
-  }
-  
-  .addressList {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-  }
-  
-  .addressItem {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-  }
-  
-  .addressDetails {
-    display: flex;
-    align-items: center;
-  }
-  
-  .paymentMethodsContainer {
-    margin-top: 2rem;
-  }
-  
-  .paymentMethodsHeading {
-    font-size: 0.875rem;
-    font-weight: bold;
-  }
-  
-  .paymentMethodsDescription {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #666;
-  }
-  
-  .paymentMethodsList {
-    margin-top: 1.5rem;
-  }
-  
-  .paymentMethod {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .cartContainer {
-    max-width: 40%;
-    background-color: white;
-    margin: 2rem auto;
-    border: 1px solid #e2e2e2;
-    padding: 2rem;
-  }
-  
-  .cartHeading {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .cartItem {
-    display: flex;
-    padding: 1rem 0;
-    border-bottom: 1px solid #e2e2e2;
-  }
-  
-  .cartItemImage img {
-    max-width: 100px;
-    max-height: 100px;
-  }
-  
   .cartItemDetails {
-    flex: 1;
-    margin-left: 1rem;
-    display: flex;
-    flex-direction: column;
+    display: block;
   }
-  
-  .cartItemRemove button {
-    background-color: transparent;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
+  .cartItemActions {
+   float: none;
   }
-  
-  .cartActionButtons {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+  .cartItemTitle h3 {
+    width: 80px;
   }
-  
-  .cartActionButton {
-    background-color: #007bff;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
+  .cartItemPrice{
+   margin-right: -1.6rem;
   }
-  
-  .cartActionButtonOr {
-    margin-top: 1rem;
+  .cartItemQuantity {
+    width: 150px;
+    margin-top: 10px;
   }
-  
-  .continueShoppingLink {
-    background-color: transparent;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
+  .paymentMethodsHeading {
+    font-size: 1rem;
   }
-  
+  .formField {
+    width: 91%;
+    
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    /* width: 70vw;
+    min-width: initial; */
+  }
+  .customForm{
+    box-shadow: none;
+  }
+  .cartContainer {
+    width: 75vw;
+    min-width: initial;
+    margin-left: 5vw;
+  }
+}

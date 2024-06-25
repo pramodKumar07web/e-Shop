@@ -1,37 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import FilterStyle from "./ProductList.module.css";
-import styles from "../filter/FilterToggle.module.css";
-import style from "../filter/FilterPage.module.css";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 import Filter from "../filter/Filter";
 import { Pagination } from "../common/Pagination";
 import axios from "axios";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const ProductList = () => {
   const {
     products,
     filteredProducts,
     totalProducts,
-    setCategories,
-    brand,
-    setBrand,
     setProducts,
-    setUniqueCategories,
-    uniqueBrands,
-    setUniqueBrands,
     minPrice,
     maxPrice,
     selectedCategories,
     selectedBrands,
-    uniqueCategories,
     setTotalProducts,
   } = useContext(UserContext);
 
   const [page, setPage] = useState(1);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const limit = 10;
-  console.log("filteredProducts", filteredProducts);
 
   const toggleFilter = () => {
     setIsFilterVisible(!isFilterVisible);
@@ -57,8 +48,6 @@ const ProductList = () => {
           params: {
             page,
             limit,
-            // selectedCategories,
-            // selectedBrands,
             selectedCategories: selectedCategories.join(","),
             selectedBrands: selectedBrands.join(","),
             minPrice,
@@ -67,25 +56,6 @@ const ProductList = () => {
         });
         console.log(" Header:", response);
         setProducts(response.data.product);
-
-        const brandd = response.data.product.map((product) => product.brand);
-        setBrand(brandd);
-
-        const cate = response.data.product.map((product) => product.category);
-        setCategories(cate);
-
-        // Extract unique categories from products
-        const categoriesSet = new Set(
-          response.data.product.map((product) => product.category)
-        );
-        setUniqueCategories(categoriesSet);
-
-        // Extract unique brands from products
-        const brandsSet = new Set(
-          response.data.product.map((brand) => brand.brand)
-        );
-        setUniqueBrands(brandsSet);
-
         // Attempt to access header in different cases
         const totalItems =
           (await response.headers.get("x-total-count")) ||
@@ -108,56 +78,118 @@ const ProductList = () => {
 
     fetchData();
   }, [
-    page,
-    limit,
-    selectedCategories,
-    selectedBrands,
-    minPrice,
     maxPrice,
+    minPrice,
+    page,
+    selectedBrands,
+    selectedCategories,
     setProducts,
-    setBrand,
-    setCategories,
-    setUniqueCategories,
-    setUniqueBrands,
     setTotalProducts,
   ]);
 
+  const [sortType, setSortType] = useState("rating"); // Default sort type
+  const [showSortOptions, setShowSortOptions] = useState(false); // Manage visibility of sort options
+
+  const sortProducts = (type) => {
+    let sortedProducts;
+    switch (type) {
+      case "rating":
+        sortedProducts = [...products].sort((a, b) => b.rating - a.rating);
+        break;
+      case "priceLowToHigh":
+        sortedProducts = [...products].sort((a, b) => a.price - b.price);
+        break;
+      case "priceHighToLow":
+        sortedProducts = [...products].sort((a, b) => b.price - a.price);
+        break;
+      default:
+        sortedProducts = products;
+    }
+    setProducts(sortedProducts);
+    setSortType(type);
+  };
+
+  const handleSortChange = (type) => {
+    sortProducts(type);
+    setShowSortOptions(false); // Hide sort options after selection
+  };
+
   return (
     <>
-      <button className={styles.filterIcon} onClick={toggleFilter}>
+      <button className={FilterStyle.filterIcon} onClick={toggleFilter}>
         <i class="fa-solid fa-filter icon"></i>
       </button>
-      <div className={style.container}>
+      <div className={FilterStyle.container}>
         <div
-          className={`${style.filterPage} ${
-            isFilterVisible ? style.visible : ""
+          className={`${FilterStyle.filterPage} ${
+            isFilterVisible ? FilterStyle.visible : ""
           }`}
         >
-          <div className={style.header}>
+          <div className={FilterStyle.header}>
             <button onClick={toggleFilter}>Close</button>
           </div>
-          <div className={styles.content}>
+          <div className={FilterStyle.content}>
             <h2>Filter Options</h2>
             <Filter />
           </div>
         </div>
       </div>
       <div className={FilterStyle.card_mr}>
+        <div className={FilterStyle.sort}>
+          <div className={FilterStyle.sortContainer}>
+            <button
+              className={FilterStyle.sortButton}
+              onClick={() => setShowSortOptions(!showSortOptions)}
+            >
+              Sort
+              <ChevronDownIcon className={FilterStyle.chevron} />
+            </button>
+            {showSortOptions && (
+              <div className={FilterStyle.sortOptions}>
+                <button
+                  onClick={() => handleSortChange("rating")}
+                  className={`${FilterStyle.sortButton} ${
+                    sortType === "rating" ? FilterStyle.active : ""
+                  }`}
+                >
+                  Best Rating
+                </button>
+                <button
+                  onClick={() => handleSortChange("priceLowToHigh")}
+                  className={`${FilterStyle.sortButton} ${
+                    sortType === "priceLowToHigh" ? FilterStyle.active : ""
+                  }`}
+                >
+                  Price: Low to High
+                </button>
+                <button
+                  onClick={() => handleSortChange("priceHighToLow")}
+                  className={`${FilterStyle.sortButton} ${
+                    sortType === "priceHighToLow" ? FilterStyle.active : ""
+                  }`}
+                >
+                  Price: High to Low
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
         <h2 className={FilterStyle.products}>Products</h2>
         <div className={FilterStyle.card_container}>
           {filteredProducts && filteredProducts ? (
             <div className={FilterStyle.card_list}>
               {filteredProducts.map((product) => (
+                <div className={FilterStyle.card}>
                 <Link to={`/product-details/${product._id}`} key={product._id}>
-                  <div className={FilterStyle.card}>
+                 
                     <img
                       className={FilterStyle.img}
                       src={product.thumbnail}
                       alt=""
                     />
                     <h3>{product.title}</h3>
-                    {/* <p className={FilterStyle.p3}>Sony Camera</p> */}
-                    <p className={`${FilterStyle.p} ${FilterStyle.p3}`}>
+                   <p className={`${FilterStyle.p} ${FilterStyle.p3}`}>
                       Price: $<strike>{product.price}</strike>
                     </p>
                     <p className={FilterStyle.p}>
@@ -183,7 +215,9 @@ const ProductList = () => {
                         Rating : {product.rating}
                       </p>
                     </div>
-                    <div className={FilterStyle.product}>
+                    
+                </Link>
+                <div className={FilterStyle.product}>
                       {product.deleted && (
                         <div>
                           <p className={FilterStyle.textRed}>product deleted</p>
@@ -197,12 +231,11 @@ const ProductList = () => {
                         </div>
                       )}
                     </div>
-                    <div className={FilterStyle.product}>
-                      {/* <p className={FilterStyle.view}>VIEW PRODUCT</p>
-                    <p className={FilterStyle.cart}>ADD TO CART</p> */}
+                <div className={FilterStyle.product}>
+                      <p className={FilterStyle.view}>VIEW PRODUCT</p>
+                    <p className={FilterStyle.cart}>ADD TO CART</p>
                     </div>
-                  </div>
-                </Link>
+                </div>
               ))}
             </div>
           ) : (
@@ -220,8 +253,7 @@ const ProductList = () => {
                         alt=""
                       />
                       <h3>{product.title}</h3>
-                      {/* <p className={FilterStyle.p3}>Sony Camera</p> */}
-                      <p className={`${FilterStyle.p} ${FilterStyle.p3}`}>
+\                      <p className={`${FilterStyle.p} ${FilterStyle.p3}`}>
                         Price: $<strike>{product.price}</strike>
                       </p>
                       <p className={FilterStyle.p}>
@@ -247,14 +279,6 @@ const ProductList = () => {
                           Rating : {product.rating}
                         </p>
                       </div>
-
-                      {/* <p className={`${FilterStyle.p} ${FilterStyle.p3}`}>
-        Price: {product.price}
-      </p> */}
-
-                      {/* <p className={`${FilterStyle.p} ${FilterStyle.stock}`}>
-        In Stock : {product.stock}
-      </p> */}
                       <div className={FilterStyle.product}>
                         <p className={FilterStyle.view}>VIEW PRODUCT</p>
                         <p className={FilterStyle.cart}>ADD TO CART</p>

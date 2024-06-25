@@ -16,9 +16,6 @@ function Navbar (){
           <Link to="/" className={NavbarStyle.li}>
               <i class="fa-solid fa-house"></i> Home
             </Link>
-            <Link to="/filter" className={NavbarStyle.li}>
-            <i class="fa-solid fa-cart-shopping"></i> Filter
-            </Link>
           
             <Link to="/dashboard-page" className={NavbarStyle.li}>
             <i class="fa-solid fa-gauge"></i> Dashboard
@@ -33,9 +30,6 @@ function Navbar (){
             {!userId ?  <Link to="/SignUp" className={NavbarStyle.li}>
             <i class="fa-solid fa-user-plus"></i>   Signup
             </Link>:null}
-            {/* <Link to="/order-page" className={NavbarStyle.li}>
-            <i class="fa-solid fa-user-plus"></i>   UserOrders
-            </Link> */}
             <Link to="/logout" className={NavbarStyle.li}>
             <i class="fa-solid fa-user-plus"></i>   Logout
             </Link>

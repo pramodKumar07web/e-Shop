@@ -15,12 +15,12 @@
   display: flex;
 }
 .admin {
-  height: 300px;
-  width: 400px;
+  /* height: 300px; */
+  width: 30vw;
   margin: 50px 20px 0px 20px;
 }
 .user {
-  height: 300px;
+  /* height: 300px; */
   width: 70vw;
   margin: 50px 20px 0px 20px;
 }
@@ -50,4 +50,21 @@
 
 span {
   margin-left: 10px;
+}
+
+
+@media (max-width: 320px) {
+
+  .admin_container{
+    display: flex;
+    flex-direction: column;
+  }
+  .admin {
+    width: 87%;
+}
+  .user {
+    width: 87%;
+    margin: 30px 20px 0px 20px;
+}
+
 }

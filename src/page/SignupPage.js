@@ -4,7 +4,7 @@ import Signup from '../components/auth/components/Signup'
 function SignupPage() {
     return ( 
         <div>
-            <Navbar/>
+            {/* <Navbar/> */}
             <Signup></Signup>
         </div>
      );

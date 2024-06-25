@@ -4,14 +4,14 @@ import styles from './Pagination.module.css';
 import UserContext from '../context/UserContext';
 // import { ITEMS_PER_PAGE } from '../../app/constants';
 
-export function Pagination({ page, setPage, handlePage, }) {
-    const {totalProducts, setTotalProducts} = useContext(UserContext)
+export function Pagination({ page, handlePage, }) {
+    const {totalProducts} = useContext(UserContext)
     const ITEMS_PER_PAGE = 10
   const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
-  // console.log('totalProducts',totalProducts)
   
   return (
     <div className={`${styles.paginationContainer} sm:px-6`}>
+       {/* {{styles :"max-width: 320px" } ?  */}
       <div className={`${styles.paginationContainerSmHidden} sm:hidden`}>
         <div
           onClick={(e) => handlePage(page > 1 ? page - 1 : page)}
@@ -25,7 +25,7 @@ export function Pagination({ page, setPage, handlePage, }) {
         >
           Next
         </div>
-      </div>
+      </div> 
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className={styles.paginationInfo}>
@@ -40,18 +40,20 @@ export function Pagination({ page, setPage, handlePage, }) {
             of <span>{totalProducts}</span> results
           </p>
         </div>
-        <div>
-          <nav
+        <div> 
+           <nav
             className={styles.paginationNav}
             aria-label="Pagination"
+          > 
+            <div 
+            onClick={(e) => handlePage(page > 1 ? page - 1 : page)}
+            className={`${styles.paginationNavButton} ${styles.paginationNavButtonFirst}`}
           >
-            <div
-              onClick={(e) => handlePage(page > 1 ? page - 1 : page)}
-              className={`${styles.paginationNavButton} ${styles.paginationNavButtonFirst}`}
-            >
-              <span className="sr-only">Previous</span>
-              <ChevronLeftIcon className={styles.paginationIcon} aria-hidden="true" />
-            </div>
+            <span className="sr-only">Previous</span>
+            <ChevronLeftIcon className={styles.paginationIcon} aria-hidden="true" />
+          </div>
+          
+           
 
             {Array.from({ length: totalPages }).map((el, index) => (
               <div

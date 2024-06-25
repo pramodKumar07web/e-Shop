@@ -39,33 +39,67 @@
     font-size: 1rem;
   }
 
+  .login_content{
+    height: 60vh;
+    width: 80vw;
+    text-align: center;
+    margin: 55px auto 0px auto;
+    /* text-align: center; */
+}
+
 .lockIcon{
-  text-align: center;
+  /* text-align: center; */
 }
 
 
 .name{
     margin-top: 15px;
-    width: 420px;
+    width: 50%;
     height: 34px;
 }
 .copyright{
-  text-align: center;
-  margin-left: 80px;
+  margin-top: 10px;
+  /* text-align: center;
+  margin-left: 80px; */
 }
-.login_content{
+/* .login_content{
     height: 60vh;
     width: 35vw;
     margin: auto;
     text-align: center;
-}
+} */
 
 
 .btn{
 
   margin-top: 15px;
-  width: 420px;
+  width: 50%;
   height: 34px;
   background-color: blue;
   color: white;
+}
+
+
+/* Mobile Styles for devices with max-width of 320px */
+@media (max-width: 320px) {
+  .name{
+    width: 90%;
+  }
+  .btn{
+    width: 90%;
+  }
+}
+
+
+/* Mobile Styles for devices with max-width of 412px but more than 320px */
+@media (min-width: 321px) and (max-width: 412px) {
+.home_page{
+  /* width: 100vw; */
+}
+.name{
+  width: 90%;
+}
+.btn{
+  width: 90%;
+}
 }

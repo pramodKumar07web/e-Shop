@@ -8,10 +8,10 @@ function Dashboard() {
   return (
     <>
 
-    <div className={DashboardStyle.home_page}>
+    {/* <div className={DashboardStyle.home_page}>
       <h1>Dashboard User</h1>
       <p>WellCome to the world of fashion</p>
-    </div>
+    </div> */}
     <div className={DashboardStyle.admin_container}>
         <div className={DashboardStyle.admin}>
           <p className={DashboardStyle.bold}>

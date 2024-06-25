@@ -1,17 +1,24 @@
 import React, { useContext, useState } from "react";
-import "./Checkout.css"; // Import your custom CSS file
+import styles from "./Checkout.module.css"; // Import your CSS module file
 import { Link, Navigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import axios from "axios";
+import Navbar from "../navbar/Navbar";
 
 function Checkout() {
-  const { userInfo, totalItems, totalAmount, cartItems, setCartItems, fetchCartItems, currentOrder ,setCurrentOrder, fetchLoggedInUser  } =
-    useContext(UserContext);
-    console.log('currentOrder',currentOrder)
-      const [selectedAddress, setSelectedAddress] = useState(null);
+  const {
+    userInfo,
+    totalItems,
+    totalAmount,
+    cartItems,
+    setCartItems,
+    fetchCartItems,
+    currentOrder,
+    setCurrentOrder,
+    fetchLoggedInUser,
+  } = useContext(UserContext);
+  const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState(null);
-  // const [currentOrder, setCurrentOrder] = useState(null);
-  // console.log("currentOrder", currentOrder._id);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -37,8 +44,7 @@ function Checkout() {
         { addresses: [...userInfo.addresses, data] }
       );
       if (response && response.data) {
-        // console.log("addAddress", response.data);
-        fetchLoggedInUser()
+        fetchLoggedInUser();
       } else {
         console.log("addAddress failed");
       }
@@ -49,66 +55,56 @@ function Checkout() {
 
   const handleOrder = async (e) => {
     e.preventDefault();
-      const order = {
-        items,
-        totalAmount,
-        totalItems,
-        user:userInfo.id,
-        paymentMethod,
-        selectedAddress,
-        status: "pending", // other status can be delivered,received.
-      };
-    // };
+    const order = {
+      items,
+      totalAmount,
+      totalItems,
+      user: userInfo.id,
+      paymentMethod,
+      selectedAddress,
+      status: "pending",
+    };
+
     try {
-      const response = await axios.post(
-        "http://localhost:3005/orders",
-        order
-      );
+      const response = await axios.post("http://localhost:3005/orders", order);
       if (response.data) {
-        console.log("Product Order Successfully",response.data);
-        setCurrentOrder(response.data)
+        setCurrentOrder(response.data);
       } else {
         console.error("Failed order");
       }
     } catch (error) {
-      console.log('Internal Server Error frontend')
+      console.log("Internal Server Error frontend");
       console.error("Error during order api", error);
     }
   };
 
-
-   const handleAddress = (e) => {
-    console.log(e.target.value);
+  const handleAddress = (e) => {
     setSelectedAddress(userInfo.addresses[e.target.value]);
   };
 
-   const handlePayment = (e) => {
-    // console.log(e.target.value);
+  const handlePayment = (e) => {
     setPaymentMethod(e.target.value);
   };
 
   const updateQuantity = async (id, quantity) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/cart/${id}`, { quantity });
+      const response = await axios.patch(`http://localhost:3005/cart/${id}`, {
+        quantity,
+      });
       const updatedItem = response.data;
-      if(updatedItem){
-        fetchCartItems()
+      if (updatedItem) {
+        fetchCartItems();
       }
-      // setCartItems((prevItems) =>
-      //   prevItems.map((item) => (item._id === id ? updatedItem : item))
-      // );
     } catch (error) {
-      console.error('Error updating quantity', error);
+      console.error("Error updating quantity", error);
     }
   };
 
   const handleRemove = async (e, id) => {
     try {
-      // Make a request to remove the item from the cart based on its id
       const response = await axios.delete(
         `http://localhost:3005/api/cart/${id}`
       );
-      // Update the cart items after successful removal
       if (response) {
         setCartItems((prevItems) =>
           prevItems.filter((item) => item._id !== id)
@@ -118,8 +114,8 @@ function Checkout() {
       console.error("Error removing item from the cart:", error);
     }
   };
+
   return (
-   
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
       {currentOrder && currentOrder.paymentMethod === "cash" && (
@@ -131,200 +127,186 @@ function Checkout() {
       {currentOrder && currentOrder.paymentMethod === "card" && (
         <Navigate to={`/stripe-checkout`} replace={true}></Navigate>
       )}
-    <div className="containerx">
-      <div className="lg-col-span-3">
-        <form className="custom-form" noValidate onSubmit={handleSubmit}>
-          <div className="space-y-12">
-            <div className="border-b border-gray-900 pb-12">
-              <h2 className="form-heading">Personal Information</h2>
-              <p className="form-description">
+      <Navbar/>
+      <div className={styles.containerx}>
+        {/* <div className={styles.customForm}> */}
+        <form className={styles.customForm} noValidate onSubmit={handleSubmit}>
+          <div className={styles.spaceY12}>
+            <div className={styles.borderBottom}>
+              <h2 className={styles.formHeading}>Personal Information</h2>
+              <p className={styles.formDescription}>
                 Use a permanent address where you can receive mail.
               </p>
 
-              <div className="form-grid">
-                <div className="form-column">
-                  <label htmlFor="name" className="form-label">
+              <div className={styles.formGrid}>
+                <div className={styles.formColumn}>
+                  <label htmlFor="name" className={styles.formLabel}>
                     First name
                   </label>
-                  <div className="form-input">
+                  <div className={styles.formInput}>
                     <input
                       type="text"
                       name="name"
                       value={data.name}
                       onChange={changeData}
                       id="name"
-                      className="form-field"
-                     required
+                      className={styles.formField}
+                      required
                     />
                   </div>
                 </div>
 
-                <div className="form-column">
-                  <label htmlFor="email" className="form-label">
+                <div className={styles.formColumn}>
+                  <label htmlFor="email" className={styles.formLabel}>
                     Email address
                   </label>
-                  <div className="form-input">
+                  <div className={styles.formInput}>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       value={data.email}
                       onChange={changeData}
-                      className="form-field"
+                      className={styles.formField}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="form-column">
-                  <label htmlFor="phone" className="form-label">
+                <div className={styles.formColumn}>
+                  <label htmlFor="phone" className={styles.formLabel}>
                     Phone
                   </label>
-                  <div className="form-input">
+                  <div className={styles.formInput}>
                     <input
                       type="phone"
                       name="phone"
                       value={data.phone}
                       onChange={changeData}
-                      className="form-field"
+                      className={styles.formField}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="form-column-full">
-                  <label htmlFor="street" className="form-label">
+                <div className={styles.formColumnFull}>
+                  <label htmlFor="street" className={styles.formLabel}>
                     Street address
                   </label>
-                  <div className="form-input">
+                  <div className={styles.formInput}>
                     <input
                       type="text"
                       name="street"
                       value={data.street}
                       onChange={changeData}
                       id="street"
-                      className="form-field"
+                      className={styles.formField}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="form-column">
-                  <label htmlFor="city" className="form-label">
+                <div className={styles.formColumn}>
+                  <label htmlFor="city" className={styles.formLabel}>
                     City
                   </label>
-                  <div className="form-input">
+                  <div className={styles.formInput}>
                     <input
                       type="text"
                       name="city"
                       value={data.city}
                       onChange={changeData}
                       id="city"
-                      className="form-field"
+                      className={styles.formField}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="form-column">
-                  <label htmlFor="state" className="form-label">
+                <div className={styles.formColumn}>
+                  <label htmlFor="state" className={styles.formLabel}>
                     State / Province
                   </label>
-                  <div className="form-input">
+                  <div className={styles.formInput}>
                     <input
                       type="text"
                       name="state"
                       value={data.state}
                       onChange={changeData}
                       id="state"
-                      className="form-field"
+                      className={styles.formField}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="form-column">
-                  <label htmlFor="pinCode" className="form-label">
+                <div className={styles.formColumn}>
+                  <label htmlFor="pinCode" className={styles.formLabel}>
                     ZIP / Postal code
                   </label>
-                  <div className="form-input">
+                  <div className={styles.formInput}>
                     <input
                       type="text"
                       name="pinCode"
                       value={data.pinCode}
                       onChange={changeData}
                       id="pinCode"
-                      className="form-field"
-                      required                    />
+                      className={styles.formField}
+                      required
+                    />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-end gap-x-6">
-              <button type="button" className="form-reset">
+            <div className={styles.formSubmitContainer}>
+              <button type="button" className={styles.formReset}>
                 Reset
               </button>
-              <button type="submit" className="form-submit">
+              <button type="submit" className={styles.formSubmit}>
                 Add Address
               </button>
             </div>
-            <div className="address-container border-b border-gray-900/10 pb-12">
-              <h2 className="address-heading text-base font-semibold leading-7 text-gray-900">
-                Address
-              </h2>
-              <p className="address-description mt-1 text-sm leading-6 text-gray-600">
+            <div className={styles.addressContainer}>
+              <h2 className={styles.addressHeading}>Address</h2>
+              <p className={styles.addressDescription}>
                 Choose from Existing address
               </p>
-              <ul className="address-list">
+              <ul className={styles.addressList}>
                 {userInfo &&
                   userInfo.addresses &&
                   userInfo.addresses.map((address, index) => (
-                    <li key={index} className="address-item">
-                      <div className="address-details">
+                    <li key={index} className={styles.addressItem}>
+                      <div className={styles.addressDetails}>
                         <input
-                            onChange={handleAddress}
+                          onChange={handleAddress}
                           name="address"
                           type="radio"
                           value={index}
                         />
                         <div>
-                          <p className="text-sm font-semibold leading-6 text-gray-900">
-                            {address.name}
-                          </p>
-                          <p className="text-sm font-semibold leading-6 text-gray-900">
-                            {address.street}
-                          </p>
-                          <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                            {address.city}
-                          </p>
+                          <p className={styles.textSm}>{address.name}</p>
+                          <p className={styles.textSm}>{address.street}</p>
+                          <p className={styles.textXs}>{address.city}</p>
                         </div>
                       </div>
-                      <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                        <p className="text-sm leading-6 text-gray-900">
-                          {address.pinCode}
-                        </p>
-                        <p className="text-sm leading-6 text-gray-900">
-                          {address.state}
-                        </p>
-                        <p className="text-sm leading-6 text-gray-900">
-                          Phone : {address.phone}
-                        </p>
+                      <div className={styles.addressRight}>
+                        <p className={styles.textSm}>{address.pinCode}</p>
+                        <p className={styles.textSm}>{address.state}</p>
+                        <p className={styles.textSm}>Phone : {address.phone}</p>
                       </div>
                     </li>
                   ))}
               </ul>
 
-              <div className="mt-10 space-y-10 payment-methods-container">
+              <div className={styles.paymentMethodsContainer}>
                 <fieldset>
-                  <legend className="payment-methods-heading text-sm font-semibold leading-6 text-gray-900">
+                  <legend className={styles.paymentMethodsHeading}>
                     Payment Methods
                   </legend>
-                  <p className="payment-methods-description mt-1 text-sm leading-6 text-gray-600">
-                    Choose One
-                  </p>
-                  <div className="mt-6 payment-methods-list space-y-6">
-                    <div className="payment-method">
+                  <p className={styles.paymentMethodsDescription}>Choose One</p>
+                  <div className={styles.paymentMethodsList}>
+                    <div className={styles.paymentMethod}>
                       <input
                         id="cash"
                         name="payments"
@@ -335,12 +317,12 @@ function Checkout() {
                       />
                       <label
                         htmlFor="cash"
-                        className="block text-sm font-medium leading-6 text-gray-900"
+                        className={styles.paymentMethodsLabel}
                       >
                         Cash
                       </label>
                     </div>
-                    <div className="payment-method">
+                    <div className={styles.paymentMethod}>
                       <input
                         id="card"
                         name="payments"
@@ -351,7 +333,7 @@ function Checkout() {
                       />
                       <label
                         htmlFor="card"
-                        className="block text-sm font-medium leading-6 text-gray-900"
+                        className={styles.paymentMethodsLabel}
                       >
                         Card Payment
                       </label>
@@ -362,85 +344,91 @@ function Checkout() {
             </div>
           </div>
         </form>
-      </div>
-      <div className="lg-col-span-2">
-        <div className="cart-container mx-auto my-12 bg-white">
-          <div className="border-t border-gray-200 px-0 py-6">
-            <h1 className="cart-heading">Cart</h1>
-            <div className="flow-root">
-              <ul role="list" className="-my-6 divide-y divide-gray-200">
-                {items.map((item) => (
-                  <li key={item.product.id} className="cart-item flex">
-                    <div className="cart-item-image">
-                      <img
-                        src={item.product.thumbnail}
-                        alt={item.product.title}
-                      />
-                    </div>
-                    <div className="cart-item-details ml-4 flex flex-1 flex-col">
-                      <div>
-                        <div className="flex justify-between text-base font-medium text-gray-900">
-                          <h3>
-                            <a href={item.product.id}>{item.product.title}</a>
-                          </h3>
-                          <p className="ml-4">${item.product.discountPrice}</p>
-                        </div>
-                        <p className="mt-1 text-sm text-gray-500">
-                          {item.product.brand}
+        {/* </div> */}
+        <div className={styles.cartContainer}>
+          <div className={styles.cartHeader}>
+            <h1 className={styles.cartHeading}>Cart</h1>
+          </div>
+          <div className={styles.cartItems}>
+            <ul className={styles.cartItemsList}>
+              {items.map((item) => (
+                <div className={styles.cart}>
+                <div key={item.product.id} className={styles.cartItem}>
+                  <div className={styles.cartItemImage}>
+                    <img
+                      src={item.product.thumbnail}
+                      alt={item.product.title}
+                    />
+                  </div>
+                  <div className={styles.cartItemDetails}>
+                    <div>
+                      <div className={styles.cartItemTitle}>
+                        <h3>
+                          <a href={item.product.id}>{item.product.title}</a>
+                        </h3>
+                        <p className={styles.cartItemPrice}>
+                          ${item.product.discountPrice}
                         </p>
                       </div>
-                      <div className="flex flex-1 items-end justify-between text-sm">
-                        <div className="text-gray-500 cart-item-quantity">
-                        <label htmlFor="quantity">Qty : </label>
-                    <select
-                      onChange={(e) => updateQuantity(item._id, e.target.value)}
-                      value={item.quantity}
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
-                        </div>
-                        <div className="flex cart-item-remove">
-                          <button onClick={(e) => handleRemove(e, item._id)} type="button">
-                            Remove
-                          </button>
-                        </div>
-                      </div>
+                      <p className={styles.cartItemBrand}>
+                        {item.product.brand}
+                      </p>
                     </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                   
+                  </div>
+                  
+                </div>
+                <div className={styles.cartItemActions}>
+                <div className={styles.cartItemQuantity}>
+                  <label htmlFor="quantity">Qty : </label>
+                  <select
+                    onChange={(e) =>
+                      updateQuantity(item._id, e.target.value)
+                    }
+                    value={item.quantity}
+                    className={styles.cartItemQuantitySelect}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <div className={styles.cartItemRemove}>
+                    <button
+                      onClick={(e) => handleRemove(e, item._id)}
+                      type="button"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+              </div>
+              ))}
+            </ul>
           </div>
 
-          <div className="border-t border-gray-200 px-2 py-6">
-            <div className="flex justify-between my-2 text-base font-medium text-gray-900">
+          <div className={styles.cartSummaryContainer}>
+            <div className={styles.cartSummary}>
               <p>Subtotal : ${totalAmount}</p>
-              {/* <p>$ {totalAmount}</p> */}
             </div>
-            <div className="flex justify-between my-2 text-base font-medium text-gray-900">
+            <div className={styles.cartSummary}>
               <p>Total Items in Cart : {totalItems} items</p>
-              {/* <p>{totalItems} items</p> */}
             </div>
-            <p className="mt-0.5 text-sm text-gray-500">
+            <p className={styles.cartNote}>
               Shipping and taxes calculated at checkout.
             </p>
-            <div className="mt-6">
-              <div
-                onClick={handleOrder}
-                className="cart-action-buttons flex justify-center"
-              >
-                <div className="cart-action-button">Order Now</div>
+            <div className={styles.cartAction}>
+              <div onClick={handleOrder} className={styles.cartActionButtons}>
+                <div className={styles.cartActionButton}>Order Now</div>
               </div>
             </div>
-            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-              <p className="cart-action-button-or">
+            <div className={styles.cartContinue}>
+              <p className={styles.cartActionButtonOr}>
                 or{" "}
                 <Link to="/">
-                  <button type="button" className="continue-shopping-link">
+                  <button type="button" className={styles.continueShoppingLink}>
                     Continue Shopping
                     <span aria-hidden="true"> &rarr;</span>
                   </button>
@@ -450,7 +438,6 @@ function Checkout() {
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

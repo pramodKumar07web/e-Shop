@@ -17,7 +17,6 @@ import Checkout from "./components/checkout/Checkout";
 import OrderSuccessPage from "./page/OrderSuccessPage";
 import AlertTemplate from "react-alert-template-basic";
 import { positions, transitions, Provider  } from "react-alert";
-import FilterToggle from "./components/filter/FilterToggle";
 import ProfileUpdate from "./components/user/ProfileUpdate";
 import AddAddress from "./components/user/AddAddress";
 import SuccessPage from "./page/SuccessPage";
@@ -25,62 +24,55 @@ import AdminProductList from "./components/admin/Components/AdminProductList";
 import AdminProductFormPage from "./page/AdminProductFormPage";
 import ViewOrders from "./components/admin/Components/ViewOrders";
 import AddCategoryBrand from "./components/admin/Components/AddCategoryBrand";
+import ProtectedAdmin from "./components/auth/ProtectedAdmin";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Protected>
+      // <Protected>
         <HomePage></HomePage>
-      </Protected>
+      // </Protected>
     ),
   },
   {
     path: "/admin",
     element: (
-      <Protected>
+      <ProtectedAdmin>
         <AdminProductList></AdminProductList>
-      </Protected>
+      </ProtectedAdmin>
     ),
   },
   {
     path: "/admin/category_brand",
     element: (
-      <Protected>
+      <ProtectedAdmin>
         <AddCategoryBrand></AddCategoryBrand>
-      </Protected>
+      </ProtectedAdmin>
     ),
   },
   {
     path: "/admin/product-form",
     element: (
-      <Protected>
+      <ProtectedAdmin>
         <AdminProductFormPage></AdminProductFormPage>
-      </Protected>
+      </ProtectedAdmin>
     ),
   },
   {
     path: "/admin/product-form/edit/:id",
     element: (
-      <Protected>
+      <ProtectedAdmin>
         <AdminProductFormPage></AdminProductFormPage>
-      </Protected>
+      </ProtectedAdmin>
     ),
   },
   {
     path:"/view-orders",
     element: (
-      <Protected>
+      <ProtectedAdmin>
         <ViewOrders></ViewOrders>
-      </Protected>
-    ),
-  },
-  {
-    path: "/filter",
-    element: (
-      <Protected>
-        <FilterToggle></FilterToggle>
-      </Protected>
+      </ProtectedAdmin>
     ),
   },
   {
@@ -109,6 +101,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/admin/product-details/:id",
+    element: (
+      <ProtectedAdmin>
+        <ProductsDetailsPage></ProductsDetailsPage>
+      </ProtectedAdmin>
+    ),
+  },
+  {
     path: "/cart-page",
     element: (
       <Protected>
@@ -127,10 +127,10 @@ const router = createBrowserRouter([
   {
     path: "/admin-page",
     element: (
-      <Protected>
+      <ProtectedAdmin>
     
         <AdminPage></AdminPage>
-      </Protected>
+      </ProtectedAdmin>
     ),
   },
 
