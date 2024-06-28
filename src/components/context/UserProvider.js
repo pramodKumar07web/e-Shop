@@ -78,7 +78,7 @@ const [categories, setCategories] = useState([]);
   const fetchCartItems = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3005/api/cart/${userId}`
+        `http://localhost:3005/cart/${userId}`
       );
       if (response) {
         // console.log("response", response.data);
@@ -102,7 +102,7 @@ const [categories, setCategories] = useState([]);
     try {
       // Make a request to remove the item from the cart based on its id
       const response = await axios.delete(
-        `http://localhost:3005/api/cart/${id}`
+        `http://localhost:3005/cart/deleteCart/${id}`
       );
       // Update the cart items after successful removal
       if (response) {
@@ -127,7 +127,7 @@ const [categories, setCategories] = useState([]);
 
   const orderUpdate = async (updateOrder) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/updateOrder/${updateOrder._id}`, updateOrder);
+      const response = await axios.patch(`http://localhost:3005/orders/updateOrder/${updateOrder._id}`, updateOrder);
       
       if (response && response.status === 200) {
         console.log("Order updated successfully", response.data);

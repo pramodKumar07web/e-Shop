@@ -10,7 +10,7 @@ function Cart() {
 
   const updateQuantity = async (id, quantity) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/cart/${id}`, {
+      const response = await axios.patch(`http://localhost:3005/cart/updateCart/${id}`, {
         quantity,
       });
       const updatedItem = response.data;

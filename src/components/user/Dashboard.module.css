@@ -13,17 +13,14 @@
 
   .admin_container{
     display: flex;
-    /* flex-direction: column; */
   }
 
 
 .admin{
-    /* height: 300px; */
     width: 25vw;
     margin: 50px 20px 0px 20px;
 }
 .user{
-    /* height: 300px; */
     width: 70vw;
     margin: 50px 20px 0px 20px;
 }

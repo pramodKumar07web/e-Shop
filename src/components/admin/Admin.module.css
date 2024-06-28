@@ -15,12 +15,10 @@
   display: flex;
 }
 .admin {
-  /* height: 300px; */
   width: 30vw;
   margin: 50px 20px 0px 20px;
 }
 .user {
-  /* height: 300px; */
   width: 70vw;
   margin: 50px 20px 0px 20px;
 }

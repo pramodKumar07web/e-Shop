@@ -25,6 +25,8 @@ import AdminProductFormPage from "./page/AdminProductFormPage";
 import ViewOrders from "./components/admin/Components/ViewOrders";
 import AddCategoryBrand from "./components/admin/Components/AddCategoryBrand";
 import ProtectedAdmin from "./components/auth/ProtectedAdmin";
+import ForgotPasswordPage from "./page/ForgotPasswordPage";
+import ResetPasswordPage from "./page/ResetPasswordPage";
 
 const router = createBrowserRouter([
   {
@@ -139,6 +141,16 @@ const router = createBrowserRouter([
     element: (
       <Logout></Logout>
     ),
+  },
+  {
+    path: "/forgot-password",
+    element: (
+      <ForgotPasswordPage></ForgotPasswordPage>
+    ),
+  },
+  {
+    path: "/reset-password/:token",
+    element: <ResetPasswordPage></ResetPasswordPage>,
   },
   {
     path: "/order-page",

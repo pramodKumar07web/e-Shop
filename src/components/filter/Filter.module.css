@@ -57,23 +57,13 @@
   }
 
   .catFixed{
-    position:fixed ;
-    /* top: 26px; */
-    /* z-index: 1; */
-   
+    position:fixed;
   }
   .brandFixed{
     position: fixed;
-    /* padding: 20px; */
-    /* margin-top: 20px; */
   }
 
-/* .categories_box{
-  width: 13vw;
-  height: 50vh;
-} */
 .categories{
-  /* position: fixed; */
     width: 20vw;
     margin-left: 23px;
     margin-top: 50px;
@@ -123,7 +113,6 @@
   border: 1px solid #ddd;
   padding: 15px;
   margin: 10px;
-  /* width: 200px; */
   color: rgb(0, 0, 0);
 }
 .img {
@@ -144,9 +133,7 @@
   
 }
 .p3 {
-  margin-top: 7px;
-  /* height: 23px; */
- 
+  margin-top: 7px; 
 }
 .stock {
   height: 23px;
@@ -155,7 +142,6 @@
   text-align: center;
   color: white;
   border-radius: 17px;
-  /* float: left; */
    display: flex;
    align-items: center;
    justify-content: center;

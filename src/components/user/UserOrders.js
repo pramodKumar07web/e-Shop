@@ -16,7 +16,7 @@ const UserOrders = () => {
     const fetchOrder = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3005/api/orders/${userInfo.id}`
+          `http://localhost:3005/orders/userOrder/${userInfo.id}`
         );
         if (response) {
           console.log("responseOrders", response);
@@ -125,7 +125,7 @@ const UserOrders = () => {
                       </p>
                     </div>
                     <div className={UserOrdersStyle.addressRight}>
-                      <p className={UserOrdersStyle.addressPincode}>
+                      <p className={UserOrdersStyle.addressPinCode}>
                         {order.selectedAddress.pinCode}
                       </p>
                       <p className={UserOrdersStyle.addressState}>

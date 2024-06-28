@@ -1,6 +1,4 @@
-.container{
-    /* background-color: aqua; */
-}
+
 .lg-col-span-3{
     width: 50vw;
     display: inline-block;
@@ -8,9 +6,7 @@
 
 .custom-form {
     width: 50vw;
-    /* height: 43vw; */
     background-color: #fff;
-    /* background-color: #a81a1a; */
     padding: 0 1rem 3rem;
   }
   
@@ -177,16 +173,10 @@
 
 .lg-col-span-2{
     float: right;
-    /* width: 100%; */
-/* height: auto; */
-
 }
   .cart-container {
     width: 35vw;
-    /* height: auto; */
-    /* max-width: 7xl; */
     background-color: #fff;
-    /* background-color: #27c432; */
     padding: 0 2rem;
   }
   

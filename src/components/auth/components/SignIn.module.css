@@ -12,14 +12,6 @@
     width: 80vw;
     text-align: center;
     margin: 55px auto 0px auto;
-    /* text-align: center; */
-}
-.lockIcon{
-  /* width: 80vw; */
-  
-}
-.name{
-  /* text-align: center; */
 }
 
 .email{
@@ -36,8 +28,10 @@
     margin-top: 15px;
     width: 50%;
     height: 34px;
-    background-color: blue;
+    background-color: rgb(79 70 229);
     color: white;
+    border: none;
+    border-radius: 7px;
 }
 
 
@@ -54,9 +48,6 @@
 
 /* Mobile Styles for devices with max-width of 412px but more than 320px */
 @media (min-width: 321px) and (max-width: 412px) {
-.home_page{
-  /* width: 100vw; */
-}
 .email{
   width: 90%;
 }

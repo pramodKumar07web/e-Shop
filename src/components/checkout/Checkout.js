@@ -40,7 +40,7 @@ function Checkout() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3005/updateUser/${userInfo.id}`,
+        `http://localhost:3005/users/updateUser/${userInfo.id}`,
         { addresses: [...userInfo.addresses, data] }
       );
       if (response && response.data) {
@@ -88,7 +88,7 @@ function Checkout() {
 
   const updateQuantity = async (id, quantity) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/cart/${id}`, {
+      const response = await axios.patch(`http://localhost:3005/cart/updateCart/${id}`, {
         quantity,
       });
       const updatedItem = response.data;
@@ -103,7 +103,7 @@ function Checkout() {
   const handleRemove = async (e, id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3005/api/cart/${id}`
+        `http://localhost:3005/cart/deleteCart/${id}`
       );
       if (response) {
         setCartItems((prevItems) =>

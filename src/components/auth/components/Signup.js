@@ -25,7 +25,7 @@ function SignUp() {
       //ApI Call
       // console.log("Before API Call");
       const response = await axios.post(
-        "http://localhost:3005/Signup",
+        "http://localhost:3005/auth/Signup",
         formData
       )
       // console.log("After API Call");

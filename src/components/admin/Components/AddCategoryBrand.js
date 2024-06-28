@@ -12,7 +12,7 @@ const AddCategoryBrand = () => {
   const handleCategorySubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3005/category", { category });
+      const response = await axios.post("http://localhost:3005/categories", { category });
       setCategoryMessage(response.data.message);
     } catch (error) {
       if (error.response && error.response.data) {
@@ -26,7 +26,7 @@ const AddCategoryBrand = () => {
   const handleBrandSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3005/brand", { brand });
+      const response = await axios.post("http://localhost:3005/brands", { brand });
       setBrandMessage(response.data.message);
     } catch (error) {
       if (error.response && error.response.data) {

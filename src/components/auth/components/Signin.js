@@ -22,7 +22,7 @@ function Signin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3005/login", data);
+      const response = await axios.post("http://localhost:3005/auth/login", data);
       if (response && response.data && response.data.token) {
         const { token, } = response.data;
         console.log('responseId',response.data.id);
@@ -84,7 +84,7 @@ function Signin() {
         // style={{ marginLeft: "40px", marginTop: "15px" }}
         >
           <Link to="/SignUp">Don't have an account? Sign up</Link>
-          <Link to=""
+          <Link to="/forgot-password"
            style={{ textDecoration: "none", marginLeft: "3vw" }}
            >
             Forget Password?

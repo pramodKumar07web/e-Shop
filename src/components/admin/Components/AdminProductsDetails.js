@@ -54,7 +54,7 @@ function AdminProductsDetails() {
 
         try {
           const response = await axios.post(
-            "http://localhost:3005/api/cart/add",
+            "http://localhost:3005/cart/addToCart",
             newItem
           );
           if (response.data) {

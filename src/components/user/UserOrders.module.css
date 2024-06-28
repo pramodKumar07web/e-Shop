@@ -117,7 +117,7 @@
 .addressName,
 .addressStreet,
 .addressCity,
-.addressPincode,
+.addressPinCode,
 .addressState,
 .addressPhone {
   font-size: 0.875rem;

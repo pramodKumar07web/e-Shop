@@ -1,6 +1,4 @@
-// src/components/orders/ViewOrders.jsx
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import styles from "./ViewOrders.module.css";
 import { EyeIcon, PencilIcon } from "@heroicons/react/16/solid";
 import Navbar from '../../navbar/Navbar'
@@ -8,13 +6,9 @@ import UserContext from "../../context/UserContext";
 
 const ViewOrders = () => {
   const {orderUpdate,orders, fetchOrders} = useContext(UserContext)
-
-  // console.log(orders)
-
   const [editTableOrderId, setEditTableOrderId] = useState(-1);
 
   const handleEdit = (order) => {
-    // console.log("handleEdit",order._id);
     setEditTableOrderId(order._id);
   };
 
