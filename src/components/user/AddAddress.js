@@ -3,6 +3,7 @@ import AddAddressStyle from './AddAddress.module.css'
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import Navbar from "../navbar/Navbar";
+import { Link } from "react-router-dom";
 
 function AddAddress() {
   const {
@@ -128,6 +129,9 @@ function AddAddress() {
                   Role: {userInfo.role}
                 </h3>
               )}
+               <p className={AddAddressStyle.userEmail}>
+                Gender: {userInfo.gender}
+              </p>
             </div>
           }
           <button className={AddAddressStyle.addBtn}
@@ -135,10 +139,11 @@ function AddAddress() {
               setShowAddAddressForm(true);
               setSelectedEditIndex(-1);
             }}
-            type="submit"
+            type="button"
           >
             Add New Address
           </button>
+          <Link to="/profileUpdate" className={AddAddressStyle.link}>ProfileUpdate</Link>
           {showAddAddressForm && (
             <form className={AddAddressStyle.customForm} noValidate onSubmit={handleSubmit}>
               <div className={AddAddressStyle.spaceY12}>

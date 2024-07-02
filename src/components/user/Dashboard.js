@@ -18,31 +18,31 @@ function Dashboard() {
             <b>User Links</b>
           </p>
           <div className={DashboardStyle.admin_links}>
-         
+          <Link to="/addAddress">
+              <p className={DashboardStyle.links}>
+                <span>MY Profile</span>
+              </p>
+            </Link>
             <Link to='/cart-page'>
               <p className={DashboardStyle.links}>
                 <span>My Cart</span>
               </p>
             </Link>
-            <Link to='/profileUpdate'>
+            {/* <Link to='/profileUpdate'>
               <p className={DashboardStyle.links}>
                 <span>Update Profile</span>
               </p>
-            </Link>
+            </Link> */}
             <Link to="/order-page">
               <p className={DashboardStyle.links}>
                 <span>My Orders</span>
               </p>
             </Link>
-            <Link to="/addAddress">
-              <p className={DashboardStyle.links}>
-                <span>Addresses</span>
-              </p>
-            </Link>
+          
            
           </div>
         </div>
-        <div className={DashboardStyle.user}>
+       {userInfo && <div className={DashboardStyle.user}>
           <p className={DashboardStyle.bold}>
             <b>User Information</b>
           </p>
@@ -62,7 +62,7 @@ function Dashboard() {
           <p className={DashboardStyle.bold1}>
             <b>Purchase history</b>
           </p>
-        </div>
+        </div>}
         <div></div>
       </div>
   

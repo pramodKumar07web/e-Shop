@@ -1,18 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './ProfileUpdate.module.css'; // Import the CSS module
 import UserContext from '../context/UserContext';
 import { useAlert } from 'react-alert';
 import Navbar from '../navbar/Navbar'
 
-const ProfileUpdate = ({ profileId }) => {
-    const {userId} = useContext(UserContext)
+const ProfileUpdate = () => {
+    const {userId, userInfo} = useContext(UserContext)
     const alert = useAlert()
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    bio: ''
+    // email: '',
+    gender: ''
   });
+
+  useEffect(() => {
+    const fetchProductData = async () => {
+      if (userInfo) {
+        setFormData({
+          name: userInfo.name,
+          // email: userInfo.email,
+          gender: userInfo.gender
+        })
+      }
+    };
+
+    fetchProductData();
+  }, [userInfo]);
+
 
   const [changedData, setChangedData] = useState({});
 
@@ -49,7 +64,7 @@ const ProfileUpdate = ({ profileId }) => {
           className={styles.input}
         />
       </div>
-      <div className={styles.formGroup}>
+      {/* <div className={styles.formGroup}>
         <label className={styles.label}>Email:</label>
         <input
           type="email"
@@ -59,12 +74,12 @@ const ProfileUpdate = ({ profileId }) => {
           
           className={styles.input}
         />
-      </div>
+      </div> */}
       <div className={styles.formGroup}>
-        <label className={styles.label}>Bio:</label>
+        <label className={styles.label}>Gender:</label>
         <textarea
-          name="bio"
-          value={formData.bio}
+          name="gender"
+          value={formData.gender}
           onChange={handleChange}
           
           className={styles.textarea}

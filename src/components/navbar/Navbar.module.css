@@ -7,6 +7,7 @@
   } */
 .nav_container {
   background-color: rgb(114, 114, 245);
+    /* background-color: #007bff; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,12 +27,30 @@
 .Navbar {
   display: flex;
   align-items: center;
+
 }
 .Navbar a {
   text-decoration: none;
   color: white;
   margin-right: 23px;
   font-size: 1.1rem;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+.cartNotification{
+  width: 15px;
+  margin-left: 0;
+  margin-bottom: 15px;
+  background-color: red;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
 /* Mobile Styles for devices with max-width of 320px */

@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CartStyle from "./Cart.module.css";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 
 function Cart() {
-  const { totalAmount, totalItems, cartItems, handleRemove, fetchCartItems } =
+  const {totalAmount, totalItems, cartItems, handleRemove, fetchCartItems } =
     useContext(UserContext);
+    // const [cartLoaded, setCartLoaded] = useState(false);
+    console.log('cartItems',cartItems.length)
+
+    // if(cartItems){
+    //   setCartLoaded(true)
+    // }
 
   const updateQuantity = async (id, quantity) => {
     try {
@@ -42,11 +48,14 @@ function Cart() {
   //   }
   // };
 
+
   // makePayment integration
 
   return (
-    <div className={CartStyle.body}>
+    <>
       {!cartItems.length && <Navigate to="/" replace={true}></Navigate>}
+    <div className={CartStyle.body}>
+    
       {/* <div className={CartStyle.home_page}>
         <h1>Cart Page</h1>
         <p>WellCome to the world of fashion</p>
@@ -54,7 +63,6 @@ function Cart() {
       <div>
         <div className={CartStyle.cards_container}>
           <div className={CartStyle.items}>
-
             <h2 className={CartStyle.details}>Cart</h2>
             {cartItems &&
               cartItems.map((item) => (
@@ -202,6 +210,7 @@ function Cart() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

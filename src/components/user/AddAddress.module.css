@@ -34,17 +34,29 @@
 }
 
 .addBtn {
-  display: block;
-  margin: 20px auto;
+  display: inline;
+  margin: 20px 148px;
   padding: 10px 20px;
   font-size: 1em;
   cursor: pointer;
-  background-color: rgb(25, 207, 25);
+  background-color: rgb(8, 201, 8);
+  color: white;
   border: none;
   border-radius: 7px;
-
 }
-.addBtn:hover{
+.link {
+  display: inline;
+  margin: 20px 148px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 7px;
+}
+
+.addBtn:hover,.link:hover{
   background-color: rgb(74, 74, 244);
 }
 

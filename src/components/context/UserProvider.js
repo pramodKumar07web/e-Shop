@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
   const [currentOrder, setCurrentOrder] = useState(null);
   const [brands, setBrands] =useState([])
   const [orders, setOrders] = useState([]);
-const [categories, setCategories] = useState([]);
+const [categories, setCategories] = useState(false);
 
   const login = (id) => {
     // Perform login actions and set isLoggedIn to true
@@ -83,6 +83,7 @@ const [categories, setCategories] = useState([]);
       if (response) {
         // console.log("response", response.data);
         setCartItems(response.data);
+        // setCartLoaded(true)
       } else {
         console.error("Failed to fetch cart items");
       }

@@ -4,8 +4,10 @@ import { Link, Navigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import Navbar from "../navbar/Navbar";
+import { useAlert } from "react-alert";
 
 function Checkout() {
+  const alert = useAlert()
   const {
     userInfo,
     totalItems,
@@ -28,15 +30,51 @@ function Checkout() {
     state: "",
     pinCode: "",
   });
+
+  const resetForm = () => {
+    setData({
+      name: "",
+      email: "",
+      phone: "",
+      street: "",
+      city: "",
+      state: "",
+      pinCode: "",
+    });
+    // setError("");  // Clear any error messages
+  };
+
   const items = cartItems;
+console.log('itemss', items.length)
 
   const changeData = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^\d{10}$/; // Example regex for 10 digit phone numbers
+    return phoneRegex.test(phone);
+  };
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+      // Validate address fields
+  if (
+    !data.name ||
+    !data.email ||
+    !data.phone ||
+    !validatePhoneNumber(data.phone) || // Validate phone number format
+    !data.street ||
+    !data.city ||
+    !data.state ||
+    !data.pinCode
+  ) {
+    alert.info("Please fill in all address fields correctly.");
+    return;
+  }
 
     try {
       const response = await axios.post(
@@ -45,6 +83,7 @@ function Checkout() {
       );
       if (response && response.data) {
         fetchLoggedInUser();
+        resetForm()
       } else {
         console.log("addAddress failed");
       }
@@ -115,9 +154,10 @@ function Checkout() {
     }
   };
 
+
   return (
     <>
-      {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {/* {items && !items.length && <Navigate to="/" replace={true}></Navigate>} */}
       {currentOrder && currentOrder.paymentMethod === "cash" && (
         <Navigate
           to={`/order-success/${currentOrder._id}`}
@@ -260,7 +300,7 @@ function Checkout() {
             </div>
 
             <div className={styles.formSubmitContainer}>
-              <button type="button" className={styles.formReset}>
+              <button type="button" onClick={resetForm}  className={styles.formReset}>
                 Reset
               </button>
               <button type="submit" className={styles.formSubmit}>
