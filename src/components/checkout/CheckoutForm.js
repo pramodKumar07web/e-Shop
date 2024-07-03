@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import UserContext from "../context/UserContext";
 
 export default function CheckoutForm() {
+  const{currentOrder} = useContext(UserContext)
   const stripe = useStripe();
   const elements = useElements();
 
@@ -58,7 +60,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/order-success/:id",
+        return_url: `http://localhost:3000/order-success/${currentOrder._id}`,
       },
     });
 

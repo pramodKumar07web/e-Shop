@@ -4,6 +4,7 @@ import axios from "axios";
 
 export const UserProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [results, setResults] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [minPrice, setMinPrice] = useState(null);
@@ -224,6 +225,7 @@ const [categories, setCategories] = useState(false);
         totalItems,
         currentOrder,
         filteredProducts,
+        results, setResults,
         setCurrentOrder,
         setCartItems,
         handleRemove,

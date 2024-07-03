@@ -66,3 +66,33 @@ span {
 }
 
 }
+@media (min-width: 321px) and (max-width: 412px){
+
+  .admin_container{
+    display: flex;
+    flex-direction: column;
+  }
+  .admin {
+    width: 87%;
+}
+  .user {
+    width: 80%;
+    margin: 30px 20px 0px 20px;
+}
+
+}
+@media (min-width: 41px) and (max-width: 758px){
+
+  .admin_container{
+    display: flex;
+    flex-direction: column;
+  }
+  .admin {
+    width: 87%;
+}
+  .user {
+    width: 80%;
+    margin: 30px 20px 0px 20px;
+}
+
+}

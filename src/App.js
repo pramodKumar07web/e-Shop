@@ -27,14 +27,15 @@ import AddCategoryBrand from "./components/admin/Components/AddCategoryBrand";
 import ProtectedAdmin from "./components/auth/ProtectedAdmin";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
 import ResetPasswordPage from "./page/ResetPasswordPage";
+import SearchProductPage from "./page/SearchProductPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      // <Protected>
+      <Protected>
         <HomePage></HomePage>
-      // </Protected>
+      </Protected>
     ),
   },
   {
@@ -83,6 +84,15 @@ const router = createBrowserRouter([
       <Protected>
         {" "}
         <FilterPage></FilterPage>
+      </Protected>
+    ),
+  },
+  {
+    path: "/search-page",
+    element: (
+      <Protected>
+        {" "}
+        <SearchProductPage></SearchProductPage>
       </Protected>
     ),
   },
