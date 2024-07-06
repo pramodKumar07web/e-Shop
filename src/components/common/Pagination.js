@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import styles from './Pagination.module.css';
 import UserContext from '../context/UserContext';
-// import { ITEMS_PER_PAGE } from '../../app/constants';
 
 export function Pagination({ page, handlePage, }) {
     const {totalProducts} = useContext(UserContext)
