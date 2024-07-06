@@ -16,7 +16,7 @@ function Cart() {
 
   const updateQuantity = async (id, quantity) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/cart/updateCart/${id}`, {
+      const response = await axios.patch(`/cart/updateCart/${id}`, {
         quantity,
       });
       const updatedItem = response.data;
@@ -35,7 +35,7 @@ function Cart() {
   //   try {
   //     // Make a request to remove the item from the cart based on its id
   //     const response = await axios.delete(
-  //       `http://localhost:3005/api/cart/${id}`
+  //       `/api/cart/${id}`
   //     );
   //     // Update the cart items after successful removal
   //     if (response) {

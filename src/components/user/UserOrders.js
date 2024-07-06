@@ -16,7 +16,7 @@ const UserOrders = () => {
     const fetchOrder = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3005/orders/userOrder/${userInfo.id}`
+          `/orders/userOrder/${userInfo.id}`
         );
         if (response) {
           console.log("responseOrders", response);

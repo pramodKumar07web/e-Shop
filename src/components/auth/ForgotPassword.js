@@ -11,7 +11,7 @@ function ForgotPassword() {
       e.preventDefault();
       try {
          await axios.post(
-          "http://localhost:3005/auth/reset-password-request",
+          "/auth/reset-password-request",
           { email }
         )
         alert('Password reset link sent to your email.');

@@ -14,7 +14,7 @@ function SuccessPage() {
     const clearCartInDatabase = async () => {
       try {
         // const userId = 'your-user-id'; // Replace with actual user ID
-       const response = await axios.delete(`http://localhost:3005/cart/clearCart/${userId}`);
+       const response = await axios.delete(`/cart/clearCart/${userId}`);
        if(response){
         fetchCartItems()
         setCurrentOrder(null)
@@ -33,7 +33,7 @@ function SuccessPage() {
   useEffect(() => {
     const fetchOrder = async () => {
         try {
-            const response = await axios.get(`http://localhost:3005/orders/successOrders/${id}`);
+            const response = await axios.get(`/orders/successOrders/${id}`);
             if (response.data && response.data.length > 0) {
                 // console.log("Fetched order data:", response.data[0]);
                 setOrder(response.data[0]);

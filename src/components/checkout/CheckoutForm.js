@@ -60,7 +60,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://localhost:3000/order-success/${currentOrder._id}`,
+        return_url: `https://e-shop-rho-two.vercel.app/order-success/${currentOrder._id}`,
       },
     });
 

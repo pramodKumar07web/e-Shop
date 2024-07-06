@@ -32,7 +32,7 @@ function AddAddress() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3005/users/updateUser/${userInfo.id}`,
+        `/users/updateUser/${userInfo.id}`,
         { addresses: [...userInfo.addresses, data] }
       );
       if (response && response.data) {
@@ -72,7 +72,7 @@ function AddAddress() {
         updatedAddresses.push(data);
       }
   
-      const response = await axios.post(`http://localhost:3005/users/updateUser/${userInfo.id}`, {
+      const response = await axios.post(`/users/updateUser/${userInfo.id}`, {
         addresses: updatedAddresses,
       });
   
@@ -96,7 +96,7 @@ function AddAddress() {
     try {
       let updatedAddresses = userInfo.addresses.filter((_, i) => i !== index);
   
-      const response = await axios.post(`http://localhost:3005/users/updateUser/${userInfo.id}`, {
+      const response = await axios.post(`/users/updateUser/${userInfo.id}`, {
         addresses: updatedAddresses,
       });
   

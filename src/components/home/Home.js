@@ -17,7 +17,7 @@ function Home() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.get(`http://localhost:3005/search?query=${query}`);
+        const response = await axios.get(`/search?query=${query}`);
         setResults(response.data);
         if(response.data){
           navigate('/search-page')

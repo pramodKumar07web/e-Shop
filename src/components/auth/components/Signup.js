@@ -62,7 +62,7 @@ function SignUp() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3005/auth/Signup",
+        "/auth/Signup",
         formData
       );
       if (response && response.data) {

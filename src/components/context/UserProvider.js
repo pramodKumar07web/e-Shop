@@ -37,7 +37,7 @@ const [categories, setCategories] = useState(false);
   // Call the backend API to Auth check
   const fetchLoggedInUser = async () => {
     try {
-      const response = await axios.get("http://localhost:3005/users/own", {
+      const response = await axios.get("/users/own", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -57,7 +57,7 @@ const [categories, setCategories] = useState(false);
     // Call the backend API to Auth check
     const CheckUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:3005/auth/check`, {
+        const response = await axios.get(`/auth/check`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -79,7 +79,7 @@ const [categories, setCategories] = useState(false);
   const fetchCartItems = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3005/cart/${userId}`
+        `/cart/${userId}`
       );
       if (response) {
         // console.log("response", response.data);
@@ -104,7 +104,7 @@ const [categories, setCategories] = useState(false);
     try {
       // Make a request to remove the item from the cart based on its id
       const response = await axios.delete(
-        `http://localhost:3005/cart/deleteCart/${id}`
+        `/cart/deleteCart/${id}`
       );
       // Update the cart items after successful removal
       if (response) {
@@ -120,7 +120,7 @@ const [categories, setCategories] = useState(false);
     // Fetch orders from the API
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:3005/orders");
+        const response = await axios.get("/orders");
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -129,7 +129,7 @@ const [categories, setCategories] = useState(false);
 
   const orderUpdate = async (updateOrder) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/orders/updateOrder/${updateOrder._id}`, updateOrder);
+      const response = await axios.patch(`/orders/updateOrder/${updateOrder._id}`, updateOrder);
       
       if (response && response.status === 200) {
         console.log("Order updated successfully", response.data);
@@ -199,8 +199,8 @@ const [categories, setCategories] = useState(false);
     const fetchCategoriesAndBrands = async () => {
       try {
         const [categoriesResponse, brandsResponse] = await Promise.all([
-          axios.get("http://localhost:3005/categories"),
-          axios.get("http://localhost:3005/brands")
+          axios.get("/categories"),
+          axios.get("/brands")
         ]);
         setCategories(categoriesResponse.data);
         setBrands(brandsResponse.data);

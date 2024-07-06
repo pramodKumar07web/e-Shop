@@ -78,7 +78,7 @@ console.log('itemss', items.length)
 
     try {
       const response = await axios.post(
-        `http://localhost:3005/users/updateUser/${userInfo.id}`,
+        `/users/updateUser/${userInfo.id}`,
         { addresses: [...userInfo.addresses, data] }
       );
       if (response && response.data) {
@@ -105,7 +105,7 @@ console.log('itemss', items.length)
     };
 
     try {
-      const response = await axios.post("http://localhost:3005/orders", order);
+      const response = await axios.post("/orders", order);
       if (response.data) {
         setCurrentOrder(response.data);
       } else {
@@ -127,7 +127,7 @@ console.log('itemss', items.length)
 
   const updateQuantity = async (id, quantity) => {
     try {
-      const response = await axios.patch(`http://localhost:3005/cart/updateCart/${id}`, {
+      const response = await axios.patch(`/cart/updateCart/${id}`, {
         quantity,
       });
       const updatedItem = response.data;
@@ -142,7 +142,7 @@ console.log('itemss', items.length)
   const handleRemove = async (e, id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3005/cart/deleteCart/${id}`
+        `/cart/deleteCart/${id}`
       );
       if (response) {
         setCartItems((prevItems) =>

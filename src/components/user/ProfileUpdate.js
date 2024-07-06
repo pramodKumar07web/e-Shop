@@ -41,7 +41,7 @@ const ProfileUpdate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.patch(`http://localhost:3005/users/profile/${userId}`, changedData);
+      const response = await axios.patch(`/users/profile/${userId}`, changedData);
       console.log("Profile updated successfully")
       alert.success('Profile updated successfully');
       setChangedData({}); // Reset changedData after successful update

@@ -36,7 +36,7 @@ function ProductForm() {
       if (id) {
         try {
           const response = await axios.get(
-            `http://localhost:3005/products/${id}`
+            `/products/${id}`
           );
           const data = response.data.product[0];
           if (data) {
@@ -113,7 +113,7 @@ const handleSubmit = async (e) => {
   try {
     const response = await axios({
       method: id ? "patch" : "post",
-      url: `http://localhost:3005/products/${id || ""}`,
+      url: `/products/${id || ""}`,
       data: product,
     });
 

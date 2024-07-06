@@ -15,7 +15,7 @@ function ProductsDetails() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3005/products/${id}`
+          `/products/${id}`
         );
         if (response.data.product) {
           setProducts(response.data.product);
@@ -54,7 +54,7 @@ function ProductsDetails() {
 
         try {
           const response = await axios.post(
-            "http://localhost:3005/cart/addToCart",
+            "/cart/addToCart",
             newItem
           );
           if (response.data) {

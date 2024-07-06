@@ -60,7 +60,7 @@ function Signin() {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post("http://localhost:3005/auth/login", data);
+      const response = await axios.post("/auth/login", data);
       if (response && response.data && response.data.token) {
         const { token, id } = response.data;
         console.log('responseId', id);

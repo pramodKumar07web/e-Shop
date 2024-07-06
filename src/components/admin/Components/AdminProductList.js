@@ -36,7 +36,7 @@ const AdminProductList = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:3005/products/${id}`,
+        `/products/${id}`,
         {
           deleted: true,
         }
@@ -87,7 +87,7 @@ const AdminProductList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3005/products", {
+        const response = await axios.get("/products", {
           params: {
             page,
             limit,

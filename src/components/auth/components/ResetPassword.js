@@ -13,7 +13,7 @@ function ResetPassword() {
     e.preventDefault();
 
     try {
-        await axios.post(`http://localhost:3005/auth/reset-password/${token}`, {password});
+        await axios.post(`/auth/reset-password/${token}`, {password});
       alert('Password has been reset.');
       navigate('/login');
     } catch (error) {
